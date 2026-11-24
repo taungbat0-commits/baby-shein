@@ -1,13 +1,26 @@
 {
   "announcement": {
-    "id": "notice_20261125_0107",
-    "titleEn": "New Lesson: Home & School Talk!",
-    "titleMy": "သင်ခန်းစာအသစ် - အိမ်နှင့်ကျောင်း စကားပြောများ ရောက်နေပြီ!",
-    "messageEn": "Tap to download Home & School Talk with EN & MY audio.",
-    "messageMy": "အိမ်နှင့်ကျောင်း စကားပြောများ (EN+MY အသံပါ) ကို နှိပ်ပြီး Download ဆွဲထည့်နိုင်ပါပြီ။",
-    "marqueeText": "သင်ခန်းစာအသစ်များ ရောက်ရှိနေပါပြီ! နှိပ်ပြီး Download ဆွဲထည့်နိုင်ပါတယ် 🎉"
+    "id": "notice_20261125_0606",
+    "titleEn": "New Lesson: More Daily Conversations!",
+    "titleMy": "သင်ခန်းစာအသစ် - နေ့စဉ်သုံး စကားပြောအပို ၁၇ ခု ရောက်နေပြီ!",
+    "messageEn": "Tap to download More Daily Conversations with EN & MY audio.",
+    "messageMy": "နေ့စဉ်သုံး စကားပြောအပို ၁၇ ခု (EN+MY အသံပါ) ကို နှိပ်ပြီး Download ဆွဲထည့်နိုင်ပါပြီ။"
   },
   "packs": [
+    {
+      "id": "pack_daily_more_dialogues",
+      "version": 2,
+      "titleEn": "More Daily Conversations",
+      "titleMy": "နေ့စဉ်သုံး စကားပြောအပို ၁၇ ခု",
+      "descriptionEn": "17 items with EN + MY audio.",
+      "descriptionMy": "Morning, Mealtime, Polite, Classroom, Playtime, Home ခေါင်းစဉ်များအတွက် စကားပြောအသစ်များ (17 ခု • EN+MY အသံပါ)",
+      "grade": 1,
+      "type": "daily",
+      "icon": "🗣️",
+      "colorHex": 4283413503,
+      "sizeLabel": "~476 KB",
+      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_daily_more_dialogues.json"
+    },
     {
       "id": "pack_daily_home_school",
       "version": 1,

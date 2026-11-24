@@ -1,0 +1,198 @@
+{
+  "id": "pack_daily_more_dialogues",
+  "titleEn": "More Daily Conversations",
+  "titleMy": "နေ့စဉ်သုံး စကားပြောအပို ၁၇ ခု",
+  "descriptionMy": "Morning, Mealtime, Polite, Classroom, Playtime, Home ခေါင်းစဉ်များအတွက် စကားပြောအသစ်များ",
+  "grade": 1,
+  "icon": "🗣️",
+  "colorHex": 4283413503,
+  "phrases": [
+    {
+      "id": "dm_morn_1",
+      "situationEn": "Morning",
+      "situationMy": "မနက်အိပ်ရာထချိန်",
+      "emoji": "🌅",
+      "audioKey": "dm_morn_1",
+      "english": "Did you sleep well?",
+      "myanmar": "ကောင်းကောင်း အိပ်ပျော်ရဲ့လား?",
+      "responseEn": "Yes, I slept very well.",
+      "responseMy": "ဟုတ်ကဲ့ အရမ်းအိပ်ပျော်ပါတယ်။"
+    },
+    {
+      "id": "dm_morn_2",
+      "situationEn": "Morning",
+      "situationMy": "မနက်အိပ်ရာထချိန်",
+      "emoji": "🫧",
+      "audioKey": "dm_morn_2",
+      "english": "Let us wash our face.",
+      "myanmar": "မျက်နှာသစ်ကြရအောင်။",
+      "responseEn": "Okay, I will wash my face now.",
+      "responseMy": "ဟုတ်ကဲ့ အခုပဲ မျက်နှာသစ်လိုက်မယ်။"
+    },
+    {
+      "id": "dm_morn_3",
+      "situationEn": "Morning",
+      "situationMy": "မနက်အိပ်ရာထချိန်",
+      "emoji": "🍳",
+      "audioKey": "dm_morn_3",
+      "english": "Breakfast is ready!",
+      "myanmar": "မနက်စာ အဆင်သင့်ဖြစ်ပြီ!",
+      "responseEn": "Yay! I am coming.",
+      "responseMy": "ရေး! လာပါပြီ။"
+    },
+    {
+      "id": "dm_meal_1",
+      "situationEn": "Mealtime",
+      "situationMy": "ထမင်းစားချိန်",
+      "emoji": "😋",
+      "audioKey": "dm_meal_1",
+      "english": "This food is so yummy!",
+      "myanmar": "ဒီအစားအစာက အရမ်းအရသာရှိတယ်!",
+      "responseEn": "I am glad you like it.",
+      "responseMy": "ကြိုက်လို့ ဝမ်းသာပါတယ်။"
+    },
+    {
+      "id": "dm_meal_2",
+      "situationEn": "Mealtime",
+      "situationMy": "ထမင်းစားချိန်",
+      "emoji": "🍚",
+      "audioKey": "dm_meal_2",
+      "english": "May I have some more rice?",
+      "myanmar": "ထမင်းနည်းနည်း ထပ်ယူလို့ရမလား?",
+      "responseEn": "Sure, here you go.",
+      "responseMy": "ရတာပေါ့ ရော့ ဒီမှာနော်။"
+    },
+    {
+      "id": "dm_meal_3",
+      "situationEn": "Mealtime",
+      "situationMy": "ထမင်းစားချိန်",
+      "emoji": "🧼",
+      "audioKey": "dm_meal_3",
+      "english": "Wash your hands before eating.",
+      "myanmar": "မစားခင် လက်ဆေးနော်။",
+      "responseEn": "Yes, I washed them with soap.",
+      "responseMy": "ဟုတ်ကဲ့ ဆပ်ပြာနဲ့ ဆေးပြီးပါပြီ။"
+    },
+    {
+      "id": "dm_pol_1",
+      "situationEn": "Polite",
+      "situationMy": "ယဉ်ကျေးစွာပြောခြင်း",
+      "emoji": "🙏",
+      "audioKey": "dm_pol_1",
+      "english": "Excuse me, may I pass?",
+      "myanmar": "တစ်ဆိတ်လောက် ဖြတ်သွားခွင့်ပြုပါနော်။",
+      "responseEn": "Of course, go ahead.",
+      "responseMy": "ရပါတယ် သွားပါ။"
+    },
+    {
+      "id": "dm_pol_2",
+      "situationEn": "Polite",
+      "situationMy": "ယဉ်ကျေးစွာပြောခြင်း",
+      "emoji": "🙇",
+      "audioKey": "dm_pol_2",
+      "english": "I am sorry for being late.",
+      "myanmar": "နောက်ကျသွားလို့ တောင်းပန်ပါတယ်။",
+      "responseEn": "That is okay. Be on time next time.",
+      "responseMy": "ရပါတယ် နောက်တစ်ခါ အချိန်မှန်လာနော်။"
+    },
+    {
+      "id": "dm_pol_3",
+      "situationEn": "Polite",
+      "situationMy": "ယဉ်ကျေးစွာပြောခြင်း",
+      "emoji": "💐",
+      "audioKey": "dm_pol_3",
+      "english": "Thank you for helping me.",
+      "myanmar": "ကူညီပေးလို့ ကျေးဇူးတင်ပါတယ်။",
+      "responseEn": "You are very welcome!",
+      "responseMy": "ရပါတယ် ဝမ်းသာပါတယ်!"
+    },
+    {
+      "id": "dm_play_1",
+      "situationEn": "Playtime",
+      "situationMy": "ကစားချိန်",
+      "emoji": "⚽",
+      "audioKey": "dm_play_1",
+      "english": "Can I play with you?",
+      "myanmar": "ငါလည်း အတူတူကစားလို့ရမလား?",
+      "responseEn": "Yes! Come join us.",
+      "responseMy": "ရတာပေါ့ လာအတူကစားမယ်။"
+    },
+    {
+      "id": "dm_play_2",
+      "situationEn": "Playtime",
+      "situationMy": "ကစားချိန်",
+      "emoji": "🎲",
+      "audioKey": "dm_play_2",
+      "english": "It is your turn now.",
+      "myanmar": "အခု မင်းအလှည့်ရောက်ပြီ။",
+      "responseEn": "Okay, watch me play!",
+      "responseMy": "ဟုတ်ပြီ ငါကစားတာ ကြည့်နော်!"
+    },
+    {
+      "id": "dm_play_3",
+      "situationEn": "Playtime",
+      "situationMy": "ကစားချိန်",
+      "emoji": "🧸",
+      "audioKey": "dm_play_3",
+      "english": "Let us put our toys away.",
+      "myanmar": "ကစားစရာတွေ ပြန်သိမ်းကြရအောင်။",
+      "responseEn": "Good idea! Let us clean up together.",
+      "responseMy": "ကောင်းသားပဲ အတူတူသိမ်းကြမယ်။"
+    },
+    {
+      "id": "dm_home_1",
+      "situationEn": "Home",
+      "situationMy": "အိမ်မှာ",
+      "emoji": "🏠",
+      "audioKey": "dm_home_1",
+      "english": "I am home!",
+      "myanmar": "အိမ်ပြန်ရောက်ပါပြီ!",
+      "responseEn": "Welcome home! How was school?",
+      "responseMy": "ပြန်လာပြီလား ကျောင်းမှာအဆင်ပြေရဲ့လား?"
+    },
+    {
+      "id": "dm_home_2",
+      "situationEn": "Home",
+      "situationMy": "အိမ်မှာ",
+      "emoji": "🎒",
+      "audioKey": "dm_home_2",
+      "english": "Where is my school bag?",
+      "myanmar": "ငါ့ကျောင်းလွယ်အိတ် ဘယ်မှာလဲ?",
+      "responseEn": "It is next to the table.",
+      "responseMy": "စားပွဲဘေးမှာ ရှိတယ်နော်။"
+    },
+    {
+      "id": "dm_home_3",
+      "situationEn": "Home",
+      "situationMy": "အိမ်မှာ",
+      "emoji": "📝",
+      "audioKey": "dm_home_3",
+      "english": "I finished my homework.",
+      "myanmar": "အိမ်စာလုပ်ပြီးသွားပါပြီ။",
+      "responseEn": "Well done! You can rest now.",
+      "responseMy": "တော်လိုက်တာ အခုနားလို့ရပြီနော်။"
+    },
+    {
+      "id": "dm_cls_1",
+      "situationEn": "Classroom",
+      "situationMy": "စာသင်ခန်းထဲ",
+      "emoji": "✏️",
+      "audioKey": "dm_cls_1",
+      "english": "Can I borrow your pencil?",
+      "myanmar": "ခဲတံခဏငှားလို့ရမလား?",
+      "responseEn": "Sure, here is my pencil.",
+      "responseMy": "ရတာပေါ့ ရော့ ငါ့ခဲတံ။"
+    },
+    {
+      "id": "dm_cls_2",
+      "situationEn": "Classroom",
+      "situationMy": "စာသင်ခန်းထဲ",
+      "emoji": "📖",
+      "audioKey": "dm_cls_2",
+      "english": "I do not understand this word.",
+      "myanmar": "ဒီစကားလုံးကို နားမလည်ဘူး။",
+      "responseEn": "No problem, let me explain it.",
+      "responseMy": "ကိစ္စမရှိဘူး ရှင်းပြပေးမယ်နော်။"
+    }
+  ]
+}
