@@ -1,12 +1,27 @@
 {
   "announcement": {
-    "id": "notice_20261125_0606",
-    "titleEn": "New Lesson: More Daily Conversations!",
-    "titleMy": "သင်ခန်းစာအသစ် - နေ့စဉ်သုံး စကားပြောအပို ၁၇ ခု ရောက်နေပြီ!",
-    "messageEn": "Tap to download More Daily Conversations with EN & MY audio.",
-    "messageMy": "နေ့စဉ်သုံး စကားပြောအပို ၁၇ ခု (EN+MY အသံပါ) ကို နှိပ်ပြီး Download ဆွဲထည့်နိုင်ပါပြီ။"
+    "id": "notice_20261125_0617",
+    "titleEn": "New Daily Dialogues Added!",
+    "titleMy": "နေ့စဉ်သုံး စကားပြောအသစ် ၁၅ ခု ထပ်ထည့်ပြီးပါပြီ!",
+    "messageEn": "Download new conversations for Bedtime, Learning, Sharing, Safety & Dreams.",
+    "messageMy": "အိပ်ရာဝင်ချိန်၊ သင်ယူချိန်၊ မျှဝေစားချိန်၊ ဂရုစိုက်ရန်နဲ့ ရည်မှန်းချက် စကားပြောအသစ် ၁၅ ခုကို Download ဆွဲထည့်နိုင်ပါပြီ။",
+    "marqueeText": "စကားပြောအသစ် ၁၅ ခု ရောက်နေပြီ! Download More Lessons ထဲဝင်ပြီး အသံပါအစုံ ထည့်သွင်းနိုင်ပါတယ် 🎉"
   },
   "packs": [
+    {
+      "id": "pack_daily_extra_topics",
+      "version": 1,
+      "titleEn": "Bedtime, Safety & Dreams Talk",
+      "titleMy": "အိပ်ရာဝင်၊ ဂရုစိုက်ရန်နှင့် ရည်မှန်းချက် စကားပြော ၁၅ ခု",
+      "descriptionEn": "15 dialogues for Bedtime, Learning, Sharing, Safety, and Dreams.",
+      "descriptionMy": "Bedtime, Learning, Sharing, Safety, Dreams ခေါင်းစဉ် ၅ ခုအတွက် စကားပြော ၁၅ ခု (EN+MY အသံပါ)",
+      "grade": 1,
+      "type": "daily",
+      "icon": "🌙",
+      "colorHex": 4288379903,
+      "sizeLabel": "~420 KB",
+      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_daily_extra_topics.json"
+    },
     {
       "id": "pack_daily_more_dialogues",
       "version": 2,
@@ -23,7 +38,7 @@
     },
     {
       "id": "pack_daily_home_school",
-      "version": 1,
+      "version": 2,
       "titleEn": "Home & School Talk",
       "titleMy": "အိမ်နှင့်ကျောင်း စကားပြောများ",
       "descriptionEn": "6 items with EN + MY audio.",

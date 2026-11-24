@@ -1,0 +1,169 @@
+{
+  "phrases": [
+    {
+      "id": "dm2_bed_1",
+      "situationEn": "Bedtime",
+      "situationMy": "အိပ်ရာဝင်ချိန်",
+      "emoji": "🌙",
+      "audioKey": "dm2_bed_1",
+      "english": "Please read me a story.",
+      "myanmar": "ပုံပြင်လေးတစ်ပုဒ် ဖတ်ပြပါနော်။",
+      "responseEn": "Sure, let us read a fun story.",
+      "responseMy": "ရတာပေါ့ ပျော်စရာပုံပြင်လေး ဖတ်ပြမယ်နော်။"
+    },
+    {
+      "id": "dm2_bed_2",
+      "situationEn": "Bedtime",
+      "situationMy": "အိပ်ရာဝင်ချိန်",
+      "emoji": "😴",
+      "audioKey": "dm2_bed_2",
+      "english": "Good night, Mom and Dad!",
+      "myanmar": "ကောင်းသောညပါ မေမေနဲ့ဖေဖေ!",
+      "responseEn": "Good night, sweet dreams!",
+      "responseMy": "ကောင်းသောညပါ အိပ်မက်လှလှမက်ပါစေ!"
+    },
+    {
+      "id": "dm2_bed_3",
+      "situationEn": "Bedtime",
+      "situationMy": "အိပ်ရာဝင်ချိန်",
+      "emoji": "💡",
+      "audioKey": "dm2_bed_3",
+      "english": "Please turn off the light.",
+      "myanmar": "မီးပိတ်ပေးပါနော်။",
+      "responseEn": "Okay, close your eyes and sleep.",
+      "responseMy": "ဟုတ်ပြီ မျက်လုံးမှိတ်ပြီး အိပ်တော့နော်။"
+    },
+    {
+      "id": "dm2_lrn_1",
+      "situationEn": "Learning",
+      "situationMy": "သင်ယူချိန်",
+      "emoji": "📖",
+      "audioKey": "dm2_lrn_1",
+      "english": "Let us read this book together.",
+      "myanmar": "ဒီစာအုပ်ကို အတူတူဖတ်ကြရအောင်။",
+      "responseEn": "Yes, I love reading books.",
+      "responseMy": "ဟုတ်ကဲ့ စာအုပ်ဖတ်ရတာ အရမ်းကြိုက်တယ်။"
+    },
+    {
+      "id": "dm2_lrn_2",
+      "situationEn": "Learning",
+      "situationMy": "သင်ယူချိန်",
+      "emoji": "🔤",
+      "audioKey": "dm2_lrn_2",
+      "english": "How do you spell this word?",
+      "myanmar": "ဒီစကားလုံးကို ဘယ်လိုစာလုံးပေါင်းလဲ?",
+      "responseEn": "Let us spell it slowly together.",
+      "responseMy": "အတူတူ ဖြည်းဖြည်းချင်း စာလုံးပေါင်းကြမယ်။"
+    },
+    {
+      "id": "dm2_lrn_3",
+      "situationEn": "Learning",
+      "situationMy": "သင်ယူချိန်",
+      "emoji": "⭐",
+      "audioKey": "dm2_lrn_3",
+      "english": "I learned five new words today!",
+      "myanmar": "ဒီနေ့ စကားလုံးအသစ် ၅ လုံး တတ်သွားပြီ!",
+      "responseEn": "Awesome! You are a star learner.",
+      "responseMy": "အရမ်းတော်တယ် ထူးချွန်တဲ့ကျောင်းသားလေးပဲ။"
+    },
+    {
+      "id": "dm2_shr_1",
+      "situationEn": "Sharing",
+      "situationMy": "မျှဝေစားချိန်",
+      "emoji": "🍎",
+      "audioKey": "dm2_shr_1",
+      "english": "Would you like some fruit?",
+      "myanmar": "အသီးလေး နည်းနည်းစားမလား?",
+      "responseEn": "Yes please, thank you so much.",
+      "responseMy": "ဟုတ်ကဲ့ ကျေးဇူးအများကြီးတင်ပါတယ်။"
+    },
+    {
+      "id": "dm2_shr_2",
+      "situationEn": "Sharing",
+      "situationMy": "မျှဝေစားချိန်",
+      "emoji": "🖍️",
+      "audioKey": "dm2_shr_2",
+      "english": "You can use my color pencils.",
+      "myanmar": "ငါ့ရောင်စုံခဲတံတွေ ယူသုံးလို့ရတယ်နော်။",
+      "responseEn": "Thank you! You are a good friend.",
+      "responseMy": "ကျေးဇူးပါ သူငယ်ချင်းကောင်းလေးပဲ။"
+    },
+    {
+      "id": "dm2_shr_3",
+      "situationEn": "Sharing",
+      "situationMy": "မျှဝေစားချိန်",
+      "emoji": "🤝",
+      "audioKey": "dm2_shr_3",
+      "english": "Sharing makes everyone happy.",
+      "myanmar": "မျှဝေပေးရင် အားလုံးပျော်ရတယ်။",
+      "responseEn": "Yes, let us always share.",
+      "responseMy": "ဟုတ်တယ် အမြဲတမ်း မျှဝေကြမယ်နော်။"
+    },
+    {
+      "id": "dm2_saf_1",
+      "situationEn": "Safety",
+      "situationMy": "ဂရုစိုက်ရန်",
+      "emoji": "🚦",
+      "audioKey": "dm2_saf_1",
+      "english": "Look left and right before crossing.",
+      "myanmar": "လမ်းမကူးခင် ဘယ်ညာကြည့်နော်။",
+      "responseEn": "Okay, I will check for cars.",
+      "responseMy": "ဟုတ်ကဲ့ ကားတွေလာမလာ သေချာကြည့်ပါ့မယ်။"
+    },
+    {
+      "id": "dm2_saf_2",
+      "situationEn": "Safety",
+      "situationMy": "ဂရုစိုက်ရန်",
+      "emoji": "🔥",
+      "audioKey": "dm2_saf_2",
+      "english": "Do not touch the hot pot.",
+      "myanmar": "ပူနေတဲ့အိုးကို မကိုင်နဲ့နော်။",
+      "responseEn": "Yes, I will stay back safely.",
+      "responseMy": "ဟုတ်ကဲ့ ဘေးကင်းအောင် ဝေးဝေးနေပါ့မယ်။"
+    },
+    {
+      "id": "dm2_saf_3",
+      "situationEn": "Safety",
+      "situationMy": "ဂရုစိုက်ရန်",
+      "emoji": "🤲",
+      "audioKey": "dm2_saf_3",
+      "english": "Hold my hand while walking.",
+      "myanmar": "လမ်းလျှောက်ရင် လက်ကိုတွဲထားနော်။",
+      "responseEn": "Okay, I am holding your hand.",
+      "responseMy": "ဟုတ်ကဲ့ လက်သေချာတွဲထားပါတယ်။"
+    },
+    {
+      "id": "dm2_drm_1",
+      "situationEn": "Dreams",
+      "situationMy": "ရည်မှန်းချက်",
+      "emoji": "👩‍🏫",
+      "audioKey": "dm2_drm_1",
+      "english": "I want to be a teacher.",
+      "myanmar": "ကြီးလာရင် ဆရာမဖြစ်ချင်တယ်။",
+      "responseEn": "That is a wonderful dream!",
+      "responseMy": "အရမ်းကောင်းတဲ့ ရည်မှန်းချက်လေးပဲ!"
+    },
+    {
+      "id": "dm2_drm_2",
+      "situationEn": "Dreams",
+      "situationMy": "ရည်မှန်းချက်",
+      "emoji": "✈️",
+      "audioKey": "dm2_drm_2",
+      "english": "I want to fly an airplane.",
+      "myanmar": "လေယာဉ်ပျံမောင်းချင်တယ်။",
+      "responseEn": "You can be a great pilot!",
+      "responseMy": "တော်တဲ့ လေယာဉ်မှူးကြီး ဖြစ်လာမှာပါ!"
+    },
+    {
+      "id": "dm2_drm_3",
+      "situationEn": "Dreams",
+      "situationMy": "ရည်မှန်းချက်",
+      "emoji": "🎨",
+      "audioKey": "dm2_drm_3",
+      "english": "I love drawing colorful pictures.",
+      "myanmar": "အရောင်စုံပုံလေးတွေ ဆွဲရတာကြိုက်တယ်။",
+      "responseEn": "Maybe you will be an artist!",
+      "responseMy": "ပန်းချီဆရာလေး ဖြစ်လာနိုင်တယ်နော်!"
+    }
+  ]
+}
