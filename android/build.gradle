@@ -7,25 +7,15 @@ allprojects {
 
 rootProject.buildDir = "../build"
 
-ext {
-    compileSdkVersion = 35
-    targetSdkVersion = 35
-    minSdkVersion = 23
-}
-
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-    project.afterEvaluate {
-        if (project.hasProperty("android")) {
-            project.android {
-                if (compileSdkVersion == null) {
-                    compileSdkVersion 35
-                }
-                if (namespace == null && project.group != null && project.group.toString().length() > 0) {
-                    namespace project.group.toString()
-                }
-            }
-        }
+    if (project.name != "app") {
+        project.ext.flutter = [
+            compileSdkVersion: 35,
+            minSdkVersion    : 23,
+            targetSdkVersion : 35,
+            ndkVersion       : "26.3.11579264"
+        ]
     }
 }
 
