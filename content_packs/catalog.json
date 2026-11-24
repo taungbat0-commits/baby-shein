@@ -1,12 +1,26 @@
 {
   "announcement": {
-    "id": "notice_v1",
-    "titleEn": "New Lessons Available!",
-    "titleMy": "သင်ခန်းစာအသစ် (၂) ခု ရောက်ရှိနေပါပြီ!",
-    "messageEn": "Tap to download Sea Animals and Jobs & Helpers packs.",
-    "messageMy": "ပင်လယ်သတ္တဝါများနဲ့ အလုပ်အကိုင် သင်ခန်းစာအသစ်တွေကို နှိပ်ပြီး ရွေးထည့်နိုင်ပါပြီ။"
+    "id": "notice_20261125_0107",
+    "titleEn": "New Lesson: Home & School Talk!",
+    "titleMy": "သင်ခန်းစာအသစ် - အိမ်နှင့်ကျောင်း စကားပြောများ ရောက်နေပြီ!",
+    "messageEn": "Tap to download Home & School Talk with EN & MY audio.",
+    "messageMy": "အိမ်နှင့်ကျောင်း စကားပြောများ (EN+MY အသံပါ) ကို နှိပ်ပြီး Download ဆွဲထည့်နိုင်ပါပြီ။"
   },
   "packs": [
+    {
+      "id": "pack_daily_home_school",
+      "version": 1,
+      "titleEn": "Home & School Talk",
+      "titleMy": "အိမ်နှင့်ကျောင်း စကားပြောများ",
+      "descriptionEn": "6 items with EN + MY audio.",
+      "descriptionMy": "နေ့စဉ် အိမ်နဲ့ကျောင်းမှာ သုံးနိုင်တဲ့ ယဉ်ကျေးသောစကားပြော ၆ ခု (6 ခု • EN+MY အသံပါ)",
+      "grade": 1,
+      "type": "daily",
+      "icon": "🏫",
+      "colorHex": 4281911695,
+      "sizeLabel": "~168 KB",
+      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_daily_home_school.json"
+    },
     {
       "id": "pack_sea_animals",
       "version": 1,
