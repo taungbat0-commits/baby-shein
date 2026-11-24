@@ -1,0 +1,39 @@
+{
+  "announcement": {
+    "id": "notice_v1",
+    "titleEn": "New Lessons Available!",
+    "titleMy": "သင်ခန်းစာအသစ် (၂) ခု ရောက်ရှိနေပါပြီ!",
+    "messageEn": "Tap to download Sea Animals and Jobs & Helpers packs.",
+    "messageMy": "ပင်လယ်သတ္တဝါများနဲ့ အလုပ်အကိုင် သင်ခန်းစာအသစ်တွေကို နှိပ်ပြီး ရွေးထည့်နိုင်ပါပြီ။"
+  },
+  "packs": [
+    {
+      "id": "pack_sea_animals",
+      "version": 1,
+      "titleEn": "Sea Animals",
+      "titleMy": "ပင်လယ်သတ္တဝါများ",
+      "descriptionEn": "6 ocean animals with examples for Grade 1.",
+      "descriptionMy": "Grade 1 အတွက် ပင်လယ်သတ္တဝါ ၆ မျိုးနှင့် ဥပမာဝါကျများ။",
+      "grade": 1,
+      "type": "lesson",
+      "icon": "🐳",
+      "colorHex": 4283413503,
+      "sizeLabel": "12 KB",
+      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_sea_animals.json"
+    },
+    {
+      "id": "pack_jobs_helpers",
+      "version": 1,
+      "titleEn": "Jobs & Helpers",
+      "titleMy": "အလုပ်အကိုင်များ + စကားပြော",
+      "descriptionEn": "5 jobs and 1 daily phrase for Grade 2.",
+      "descriptionMy": "Grade 2 အတွက် အလုပ်အကိုင် ၅ မျိုးနှင့် နေ့စဉ်သုံးစကားပြော။",
+      "grade": 2,
+      "type": "lesson",
+      "icon": "👩‍⚕️",
+      "colorHex": 4294933154,
+      "sizeLabel": "11 KB",
+      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_jobs_helpers.json"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "lessons": [
+    {
+      "id": "pack_g2_jobs",
+      "grade": 2,
+      "order": 13,
+      "titleEn": "Jobs & Helpers",
+      "titleMy": "အလုပ်အကိုင်များ (အသစ်)",
+      "descriptionEn": "People who help us every day.",
+      "descriptionMy": "နေ့စဉ် ကူညီပေးကြတဲ့ အလုပ်အကိုင်များ။",
+      "icon": "👩‍⚕️",
+      "colorHex": 4294933154,
+      "category": "vocabulary",
+      "items": [
+        {
+          "id": "job_1",
+          "english": "Teacher",
+          "myanmar": "ဆရာ / ဆရာမ",
+          "phonetic": "/ˈtiː.tʃər/",
+          "emoji": "👩‍🏫",
+          "audioKey": "job_1",
+          "exampleEn": "Our teacher is very kind.",
+          "exampleMy": "တို့ဆရာမက အရမ်းကြင်နာတတ်တယ်။",
+          "exampleAudioKey": "job_1_ex"
+        },
+        {
+          "id": "job_2",
+          "english": "Doctor",
+          "myanmar": "ဆရာဝန်",
+          "phonetic": "/ˈdɒk.tər/",
+          "emoji": "👨‍⚕️",
+          "audioKey": "job_2",
+          "exampleEn": "The doctor helps sick people.",
+          "exampleMy": "ဆရာဝန်က နေမကောင်းသူတွေကို ကုသပေးတယ်။",
+          "exampleAudioKey": "job_2_ex"
+        },
+        {
+          "id": "job_3",
+          "english": "Farmer",
+          "myanmar": "လယ်သမား",
+          "phonetic": "/ˈfɑːr.mər/",
+          "emoji": "👨‍🌾",
+          "audioKey": "job_3",
+          "exampleEn": "Farmers grow rice for us.",
+          "exampleMy": "လယ်သမားတွေက စပါးစိုက်ပေးကြတယ်။",
+          "exampleAudioKey": "job_3_ex"
+        },
+        {
+          "id": "job_4",
+          "english": "Chef",
+          "myanmar": "စားဖိုမှူး",
+          "phonetic": "/ʃɛf/",
+          "emoji": "👨‍🍳",
+          "audioKey": "job_4",
+          "exampleEn": "The chef cooks yummy soup.",
+          "exampleMy": "စားဖိုမှူးက အရသာရှိတဲ့ ဟင်းချိုချက်တယ်။",
+          "exampleAudioKey": "job_4_ex"
+        },
+        {
+          "id": "job_5",
+          "english": "Pilot",
+          "myanmar": "လေယာဉ်မှူး",
+          "phonetic": "/ˈpaɪ.lət/",
+          "emoji": "👨‍✈️",
+          "audioKey": "job_5",
+          "exampleEn": "A pilot flies an airplane.",
+          "exampleMy": "လေယာဉ်မှူးက လေယာဉ်မောင်းတယ်။",
+          "exampleAudioKey": "job_5_ex"
+        }
+      ]
+    }
+  ],
+  "phrases": [
+    {
+      "id": "d_extra_1",
+      "english": "What do you want to be?",
+      "myanmar": "ကြီးလာရင် ဘာလုပ်ချင်လဲ?",
+      "situationEn": "Dreams",
+      "situationMy": "ရည်မှန်းချက်",
+      "emoji": "🌟",
+      "audioKey": "daily_extra_1",
+      "responseEn": "I want to be a doctor!",
+      "responseMy": "ဆရာဝန် ဖြစ်ချင်ပါတယ်!"
+    }
+  ]
+}

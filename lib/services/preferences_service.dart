@@ -6,6 +6,7 @@ class PreferencesService {
   static const _keySlowByDefault = 'slow_by_default';
   static const _keyShowMyanmarHints = 'show_myanmar_hints';
   static const _keyParentPin = 'parent_pin';
+  static const _keyDismissedNoticeId = 'dismissed_notice_id';
 
   SharedPreferences? _prefs;
 
@@ -27,4 +28,7 @@ class PreferencesService {
 
   String get parentPin => _prefs?.getString(_keyParentPin) ?? '1234';
   Future<void> setParentPin(String pin) async => _prefs?.setString(_keyParentPin, pin);
+
+  String get dismissedNoticeId => _prefs?.getString(_keyDismissedNoticeId) ?? '';
+  Future<void> setDismissedNoticeId(String id) async => _prefs?.setString(_keyDismissedNoticeId, id);
 }

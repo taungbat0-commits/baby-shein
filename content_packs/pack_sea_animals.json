@@ -1,0 +1,84 @@
+{
+  "lessons": [
+    {
+      "id": "pack_g1_sea",
+      "grade": 1,
+      "order": 15,
+      "titleEn": "Sea Animals",
+      "titleMy": "ပင်လယ်သတ္တဝါများ (အသစ်)",
+      "descriptionEn": "Fun ocean animals!",
+      "descriptionMy": "ပင်လယ်ထဲက ချစ်စရာသတ္တဝါလေးများ။",
+      "icon": "🐳",
+      "colorHex": 4283413503,
+      "category": "animals",
+      "items": [
+        {
+          "id": "sea_1",
+          "english": "Whale",
+          "myanmar": "ဝေလငါး",
+          "phonetic": "/weɪl/",
+          "emoji": "🐳",
+          "audioKey": "sea_1",
+          "exampleEn": "The blue whale is huge.",
+          "exampleMy": "ဝေလငါးပြာကြီးက အရမ်းကြီးတယ်။",
+          "exampleAudioKey": "sea_1_ex"
+        },
+        {
+          "id": "sea_2",
+          "english": "Dolphin",
+          "myanmar": "လင်းပိုင်",
+          "phonetic": "/ˈdɒl.fɪn/",
+          "emoji": "🐬",
+          "audioKey": "sea_2",
+          "exampleEn": "A dolphin jumps in the sea.",
+          "exampleMy": "လင်းပိုင်လေး ပင်လယ်ထဲ ခုန်နေတယ်။",
+          "exampleAudioKey": "sea_2_ex"
+        },
+        {
+          "id": "sea_3",
+          "english": "Turtle",
+          "myanmar": "လိပ်",
+          "phonetic": "/ˈtɜːr.təl/",
+          "emoji": "🐢",
+          "audioKey": "sea_3",
+          "exampleEn": "The sea turtle swims slowly.",
+          "exampleMy": "ပင်လယ်လိပ်လေး ဖြည်းဖြည်းရေကူးတယ်။",
+          "exampleAudioKey": "sea_3_ex"
+        },
+        {
+          "id": "sea_4",
+          "english": "Crab",
+          "myanmar": "ဂဏန်း",
+          "phonetic": "/kræb/",
+          "emoji": "🦀",
+          "audioKey": "sea_4",
+          "exampleEn": "A red crab walks sideways.",
+          "exampleMy": "ဂဏန်းနီလေး ဘေးတိုက်လမ်းလျှောက်တယ်။",
+          "exampleAudioKey": "sea_4_ex"
+        },
+        {
+          "id": "sea_5",
+          "english": "Starfish",
+          "myanmar": "ကြယ်ငါး",
+          "phonetic": "/ˈstɑːr.fɪʃ/",
+          "emoji": "⭐",
+          "audioKey": "sea_5",
+          "exampleEn": "A starfish has five arms.",
+          "exampleMy": "ကြယ်ငါးမှာ လက်တံ ၅ ခုရှိတယ်။",
+          "exampleAudioKey": "sea_5_ex"
+        },
+        {
+          "id": "sea_6",
+          "english": "Shark",
+          "myanmar": "ငါးမန်း",
+          "phonetic": "/ʃɑːrk/",
+          "emoji": "🦈",
+          "audioKey": "sea_6",
+          "exampleEn": "Sharks swim very fast.",
+          "exampleMy": "ငါးမန်းတွေ အရမ်းမြန်မြန်ရေကူးတယ်။",
+          "exampleAudioKey": "sea_6_ex"
+        }
+      ]
+    }
+  ]
+}

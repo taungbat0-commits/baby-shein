@@ -9,6 +9,7 @@ import '../widgets/mascot_banner.dart';
 import 'alphabet_screen.dart';
 import 'certificate_screen.dart';
 import 'daily_english_screen.dart';
+import 'downloads_screen.dart';
 import 'games/games_hub_screen.dart';
 import 'grade_lessons_screen.dart';
 import 'listening_screen.dart';
@@ -146,7 +147,56 @@ class HomeScreen extends StatelessWidget {
                   text: '${_greetingEn()} ${profile.name}! Let us learn English today.',
                 ),
               ),
-              const SizedBox(height: 18),
+              if (state.hasNewUpdates) ...[
+                const SizedBox(height: 12),
+                BouncyButton(
+                  onTap: () => _open(context, const DownloadsScreen()),
+                  color: AppColors.sunYellowLight,
+                  border: Border.all(color: AppColors.softPink, width: 2),
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      const Text('🔔', style: TextStyle(fontSize: 28)),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              state.activeAnnouncement?.titleMy.isNotEmpty == true
+                                  ? state.activeAnnouncement!.titleMy
+                                  : 'သင်ခန်းစာအသစ် \${state.availableNewPackCount} ခု ရောက်နေပါပြီ!',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 14,
+                                color: AppColors.textDark,
+                              ),
+                            ),
+                            Text(
+                              state.activeAnnouncement?.messageMy.isNotEmpty == true
+                                  ? state.activeAnnouncement!.messageMy
+                                  : 'နှိပ်ပြီး ကြိုက်နှစ်သက်ရာ Download ဆွဲထည့်နိုင်ပါတယ်',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: AppColors.textMuted,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () => state.dismissAnnouncement(),
+                        icon: const Icon(Icons.close_rounded, size: 20, color: AppColors.textMuted),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+
+              const SizedBox(height: 16),
               const Text(
                 'Choose Your Class • အတန်းရွေးချယ်ပါ',
                 style: TextStyle(
@@ -269,7 +319,62 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 14),
+              BouncyButton(
+                onTap: () => _open(context, const DownloadsScreen()),
+                color: AppColors.skyBlueLight,
+                border: Border.all(color: AppColors.skyBlue, width: 2),
+                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+                child: Row(
+                  children: [
+                    const Text('📥', style: TextStyle(fontSize: 28)),
+                    const SizedBox(width: 12),
+                    const Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Download More Lessons',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15.5,
+                              color: AppColors.textDark,
+                            ),
+                          ),
+                          Text(
+                            'သင်ခန်းစာအသစ်များ ကြိုက်ရာရွေးပြီး ထည့်သွင်းမယ်',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.textMuted,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (state.availableNewPackCount > 0)
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: AppColors.softPink,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          '\${state.availableNewPackCount} NEW',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 11,
+                          ),
+                        ),
+                      )
+                    else
+                      const Icon(Icons.chevron_right_rounded, color: AppColors.skyBlue, size: 28),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 14),
               Row(
                 children: [
                   Expanded(

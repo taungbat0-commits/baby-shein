@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import '../models/content_pack_model.dart';
 import '../models/lesson_model.dart';
 import '../models/profile_model.dart';
 import '../models/progress_model.dart';
 import 'audio_service.dart';
+import 'content_update_service.dart';
 import 'database_service.dart';
 import 'lesson_repository.dart';
 import 'preferences_service.dart';
@@ -16,6 +18,7 @@ class AppState extends ChangeNotifier {
   final LessonRepository repository = LessonRepository();
   final AudioService audio = AudioService();
   final SpeechService speech = SpeechService();
+  final ContentUpdateService contentUpdates = ContentUpdateService();
 
   bool _isReady = false;
   List<StudentProfile> _profiles = [];
@@ -26,6 +29,10 @@ class AppState extends ChangeNotifier {
   List<QuizResultRecord> _quizResults = [];
   List<DailyActivityRecord> _dailyActivity = [];
   Set<String> _unlockedBadges = {};
+  CatalogData? _remoteCatalog;
+  Map<String, int> _installedPacks = {};
+  bool _checkingUpdates = false;
+  String? _downloadingPackId;
 
   DateTime? _sessionStart;
   Timer? _minuteTimer;
@@ -43,10 +50,34 @@ class AppState extends ChangeNotifier {
   bool get slowByDefault => prefs.slowByDefault;
   bool get showMyanmarHints => prefs.showMyanmarHints;
   String get parentPin => prefs.parentPin;
+  CatalogData? get remoteCatalog => _remoteCatalog;
+  Map<String, int> get installedPacks => _installedPacks;
+  bool get checkingUpdates => _checkingUpdates;
+  String? get downloadingPackId => _downloadingPackId;
+
+  RemoteAnnouncement? get activeAnnouncement {
+    final ann = _remoteCatalog?.announcement;
+    if (ann == null || ann.id.isEmpty) return null;
+    if (ann.id == prefs.dismissedNoticeId) return null;
+    return ann;
+  }
+
+  int get availableNewPackCount {
+    final packs = _remoteCatalog?.packs ?? [];
+    int count = 0;
+    for (final p in packs) {
+      final installedVer = _installedPacks[p.id];
+      if (installedVer == null || p.version > installedVer) count++;
+    }
+    return count;
+  }
+
+  bool get hasNewUpdates => activeAnnouncement != null || availableNewPackCount > 0;
 
   Future<void> initialize() async {
     await prefs.init();
     await repository.loadAll();
+    await _reloadInstalledPacks();
     await audio.init(soundEnabled: prefs.soundEnabled);
 
     _profiles = await db.getProfiles();
@@ -63,6 +94,7 @@ class AppState extends ChangeNotifier {
     _startSessionTracking();
     _isReady = true;
     notifyListeners();
+    unawaited(checkForUpdates());
   }
 
   void _startSessionTracking() {
@@ -307,6 +339,53 @@ class AppState extends ChangeNotifier {
     await db.resetProfileProgress(activeProfile.id!);
     await _refreshActiveProfileAndData();
     notifyListeners();
+  }
+
+
+  Future<void> _reloadInstalledPacks() async {
+    _installedPacks = await contentUpdates.getInstalledVersions();
+    final downloaded = await contentUpdates.loadInstalledContent();
+    repository.applyDownloadedContent(downloaded.lessons, downloaded.phrases);
+  }
+
+  Future<bool> checkForUpdates() async {
+    _checkingUpdates = true;
+    notifyListeners();
+    final cat = await contentUpdates.fetchCatalog();
+    _checkingUpdates = false;
+    if (cat != null) {
+      _remoteCatalog = cat;
+      notifyListeners();
+      return true;
+    }
+    notifyListeners();
+    return false;
+  }
+
+  Future<bool> downloadPack(ContentPackInfo pack) async {
+    _downloadingPackId = pack.id;
+    notifyListeners();
+    final ok = await contentUpdates.downloadPack(pack);
+    if (ok) {
+      await _reloadInstalledPacks();
+    }
+    _downloadingPackId = null;
+    notifyListeners();
+    return ok;
+  }
+
+  Future<void> removePack(String packId) async {
+    await contentUpdates.removePack(packId);
+    await _reloadInstalledPacks();
+    notifyListeners();
+  }
+
+  Future<void> dismissAnnouncement() async {
+    final ann = _remoteCatalog?.announcement;
+    if (ann != null && ann.id.isNotEmpty) {
+      await prefs.setDismissedNoticeId(ann.id);
+      notifyListeners();
+    }
   }
 
   @override
