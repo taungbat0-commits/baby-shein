@@ -43,7 +43,7 @@ jobs:
           pip install --quiet edge-tts
           python3 scripts/generate_audio.py
 
-      - name: Ensure Android Gradle Wrapper and Launcher Icons exist
+      - name: Ensure Android Gradle Wrapper exists
         run: |
           mkdir -p /tmp/flutter_scaffold
           cd /tmp/flutter_scaffold
@@ -54,16 +54,13 @@ jobs:
             mkdir -p "${GITHUB_WORKSPACE}/android/gradle/wrapper"
             cp -r /tmp/flutter_scaffold/android/gradle/wrapper/* "${GITHUB_WORKSPACE}/android/gradle/wrapper/"
           fi
-          for dir in /tmp/flutter_scaffold/android/app/src/main/res/mipmap-*; do
-            base=$(basename "$dir")
-            if [ ! -d "${GITHUB_WORKSPACE}/android/app/src/main/res/${base}" ]; then
-              cp -r "$dir" "${GITHUB_WORKSPACE}/android/app/src/main/res/"
-            fi
-          done
           cd "${GITHUB_WORKSPACE}"
 
       - name: Install Flutter dependencies
         run: flutter pub get
+
+      - name: Generate Baby Shein App Launcher Icon
+        run: dart run flutter_launcher_icons
 
       - name: Run Flutter Analyze
         run: flutter analyze --no-fatal-infos
