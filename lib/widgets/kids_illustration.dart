@@ -17,6 +17,15 @@ class KidsIllustration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final swatchColor = item.colorHex != null ? Color(item.colorHex!) : accentColor;
+    final isNumber = RegExp(r'^\d+$').hasMatch(item.emoji.trim());
+
+    double textSize;
+    if (isNumber) {
+      final len = item.emoji.trim().length;
+      textSize = len >= 3 ? size * 0.34 : (len == 2 ? size * 0.44 : size * 0.52);
+    } else {
+      textSize = size * (item.colorHex != null ? 0.36 : 0.52);
+    }
 
     return Container(
       width: size,
@@ -54,9 +63,19 @@ class KidsIllustration extends StatelessWidget {
                 border: Border.all(color: Colors.white, width: 3),
               ),
             ),
-          Text(
-            item.emoji,
-            style: TextStyle(fontSize: size * (item.colorHex != null ? 0.36 : 0.52)),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                item.emoji,
+                style: TextStyle(
+                  fontSize: textSize,
+                  fontWeight: isNumber ? FontWeight.w900 : FontWeight.normal,
+                  color: isNumber ? AppColors.textDark : null,
+                ),
+              ),
+            ),
           ),
           Positioned(
             top: 10,

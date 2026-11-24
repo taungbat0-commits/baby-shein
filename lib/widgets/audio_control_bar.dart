@@ -28,25 +28,24 @@ class AudioControlBar extends StatelessWidget {
               child: BouncyButton(
                 onTap: onListen,
                 color: primaryColor,
-                padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 10),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.volume_up_rounded, color: Colors.white, size: 22),
-                    SizedBox(width: 6),
-                    Flexible(
-                      child: Text(
+                padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 8),
+                child: const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.volume_up_rounded, color: Colors.white, size: 22),
+                      SizedBox(width: 5),
+                      Text(
                         'EN • အင်္ဂလိပ်',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w900,
                           fontSize: 14,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -56,25 +55,24 @@ class AudioControlBar extends StatelessWidget {
                 child: BouncyButton(
                   onTap: onListenMy,
                   color: AppColors.softPink,
-                  padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 10),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('🇲🇲', style: TextStyle(fontSize: 17)),
-                      SizedBox(width: 6),
-                      Flexible(
-                        child: Text(
+                  padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 8),
+                  child: const FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('🇲🇲', style: TextStyle(fontSize: 17)),
+                        SizedBox(width: 5),
+                        Text(
                           'MY • မြန်မာ',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
                             fontSize: 14,
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -90,20 +88,23 @@ class AudioControlBar extends StatelessWidget {
                 color: AppColors.sunYellowLight,
                 border: Border.all(color: AppColors.sunYellow, width: 2),
                 padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 8),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('🐢', style: TextStyle(fontSize: 16)),
-                    SizedBox(width: 6),
-                    Text(
-                      'Slow • ဖြည်းဖြည်း',
-                      style: TextStyle(
-                        color: AppColors.textDark,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 13,
+                child: const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('🐢', style: TextStyle(fontSize: 16)),
+                      SizedBox(width: 5),
+                      Text(
+                        'Slow • ဖြည်းဖြည်း',
+                        style: TextStyle(
+                          color: AppColors.textDark,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 13,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -114,20 +115,23 @@ class AudioControlBar extends StatelessWidget {
                 color: AppColors.mintGreenLight,
                 border: Border.all(color: AppColors.mintGreen, width: 2),
                 padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 8),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.replay_rounded, color: AppColors.mintGreen, size: 18),
-                    SizedBox(width: 5),
-                    Text(
-                      'Repeat • ထပ်နားထောင်',
-                      style: TextStyle(
-                        color: AppColors.textDark,
-                        fontWeight: FontWeight.w800,
-                        fontSize: 12.5,
+                child: const FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.replay_rounded, color: AppColors.mintGreen, size: 18),
+                      SizedBox(width: 4),
+                      Text(
+                        'Repeat • ထပ်နားထောင်',
+                        style: TextStyle(
+                          color: AppColors.textDark,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 12.5,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
