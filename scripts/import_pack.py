@@ -130,7 +130,7 @@ def main() -> None:
     CATALOG_PATH.write_text(json.dumps(cat, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"✅ Imported: {dest} (v{ver}, {count} items)")
 
-    if input("GitHub ပေါ် အခု Push တင်မလား? (y/n) [y]: ").strip().lower() in ("", "y", "yes"):
+    if "--push" in sys.argv or input("GitHub ပေါ် အခု Push တင်မလား? (y/n) [y]: ").strip().lower() in ("", "y", "yes"):
         subprocess.run(["git", "add", "content_packs/"], check=True)
         subprocess.run(["git", "commit", "-m", f"Import pack: {title_en} v{ver}"], check=True)
         subprocess.run(["git", "pull", "--rebase"], check=False)
