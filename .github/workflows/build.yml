@@ -3,6 +3,9 @@ name: Build Baby Shein APK
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'content_packs/**'
+      - 'README.md'
   workflow_dispatch:
 
 jobs:

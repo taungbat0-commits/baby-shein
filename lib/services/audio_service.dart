@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:path_provider/path_provider.dart';
 
 class AudioService {
   final AudioPlayer _player = AudioPlayer();
   final FlutterTts _tts = FlutterTts();
 
   Set<String> _bundledAssets = {};
+  String? _downloadedAudioDir;
   bool _initialized = false;
   bool _soundEnabled = true;
 
@@ -27,6 +31,11 @@ class AudioService {
     } catch (_) {
       _bundledAssets = {};
     }
+
+    try {
+      final base = await getApplicationDocumentsDirectory();
+      _downloadedAudioDir = '${base.path}/downloaded_packs/audio';
+    } catch (_) {}
 
     try {
       await _tts.setLanguage('en-US');
@@ -59,6 +68,13 @@ class AudioService {
     return null;
   }
 
+  File? _findDownloadedAudioFile(String audioKey) {
+    if (_downloadedAudioDir == null) return null;
+    final mp3 = File('$_downloadedAudioDir/$audioKey.mp3');
+    if (mp3.existsSync() && mp3.lengthSync() > 200) return mp3;
+    return null;
+  }
+
   Future<void> speak({
     required String text,
     String? audioKey,
@@ -77,11 +93,21 @@ class AudioService {
       final lookupKey = (lang == 'my' && !audioKey.endsWith('_my'))
           ? '${audioKey}_my'
           : audioKey;
+
       final assetRelPath = _findAssetRelativePath(lookupKey);
       if (assetRelPath != null) {
         try {
           await _player.setPlaybackRate(slow ? 0.72 : 1.0);
           await _player.play(AssetSource(assetRelPath));
+          return;
+        } catch (_) {}
+      }
+
+      final localFile = _findDownloadedAudioFile(lookupKey);
+      if (localFile != null) {
+        try {
+          await _player.setPlaybackRate(slow ? 0.72 : 1.0);
+          await _player.play(DeviceFileSource(localFile.path));
           return;
         } catch (_) {}
       }

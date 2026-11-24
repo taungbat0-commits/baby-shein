@@ -33,6 +33,7 @@ class AppState extends ChangeNotifier {
   Map<String, int> _installedPacks = {};
   bool _checkingUpdates = false;
   String? _downloadingPackId;
+  String? _downloadProgressText;
 
   DateTime? _sessionStart;
   Timer? _minuteTimer;
@@ -54,6 +55,7 @@ class AppState extends ChangeNotifier {
   Map<String, int> get installedPacks => _installedPacks;
   bool get checkingUpdates => _checkingUpdates;
   String? get downloadingPackId => _downloadingPackId;
+  String? get downloadProgressText => _downloadProgressText;
 
   RemoteAnnouncement? get activeAnnouncement {
     final ann = _remoteCatalog?.announcement;
@@ -364,12 +366,20 @@ class AppState extends ChangeNotifier {
 
   Future<bool> downloadPack(ContentPackInfo pack) async {
     _downloadingPackId = pack.id;
+    _downloadProgressText = 'Starting...';
     notifyListeners();
-    final ok = await contentUpdates.downloadPack(pack);
+    final ok = await contentUpdates.downloadPack(
+      pack,
+      onProgress: (done, total) {
+        _downloadProgressText = 'Audio \$done / \$total';
+        notifyListeners();
+      },
+    );
     if (ok) {
       await _reloadInstalledPacks();
     }
     _downloadingPackId = null;
+    _downloadProgressText = null;
     notifyListeners();
     return ok;
   }

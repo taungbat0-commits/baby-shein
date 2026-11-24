@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../models/content_pack_model.dart';
@@ -22,10 +23,15 @@ class ContentUpdateService {
   Future<Directory> _packsDir() async {
     final base = await getApplicationDocumentsDirectory();
     final dir = Directory('${base.path}/downloaded_packs');
-    if (!await dir.exists()) {
-      await dir.create(recursive: true);
-    }
+    if (!await dir.exists()) await dir.create(recursive: true);
     return dir;
+  }
+
+  Future<Directory> _audioDir() async {
+    final dir = await _packsDir();
+    final audio = Directory('${dir.path}/audio');
+    if (!await audio.exists()) await audio.create(recursive: true);
+    return audio;
   }
 
   Future<File> _metaFile() async {
@@ -49,12 +55,65 @@ class ContentUpdateService {
     }
   }
 
+  Future<bool> _downloadBinary(String url, File target) async {
+    final client = HttpClient()..connectionTimeout = const Duration(seconds: 8);
+    try {
+      final req = await client.getUrl(Uri.parse(url));
+      final res = await req.close().timeout(const Duration(seconds: 15));
+      if (res.statusCode != 200) return false;
+      final bytes = await consolidateHttpClientResponseBytes(res);
+      if (bytes.length < 200) return false;
+      await target.writeAsBytes(bytes, flush: true);
+      return true;
+    } catch (_) {
+      return false;
+    } finally {
+      client.close(force: true);
+    }
+  }
+
+  Set<String> _extractAudioKeys(Map<String, dynamic> decoded) {
+    final keys = <String>{};
+    final lessons = (decoded['lessons'] as List<dynamic>?) ?? [];
+    for (final rawL in lessons) {
+      final l = rawL as Map<String, dynamic>;
+      final items = (l['items'] as List<dynamic>?) ?? [];
+      for (final rawI in items) {
+        final item = rawI as Map<String, dynamic>;
+        final ak = ((item['audioKey'] as String?) ?? (item['id'] as String?) ?? '').trim();
+        if (ak.isNotEmpty) {
+          keys.add(ak);
+          if (((item['myanmar'] as String?) ?? '').trim().isNotEmpty) {
+            keys.add('${ak}_my');
+          }
+        }
+        final exK = ((item['exampleAudioKey'] as String?) ?? '${ak}_ex').trim();
+        if (((item['exampleEn'] as String?) ?? '').trim().isNotEmpty) {
+          keys.add(exK);
+        }
+        if (((item['exampleMy'] as String?) ?? '').trim().isNotEmpty) {
+          keys.add('${exK}_my');
+        }
+      }
+    }
+    final phrases = (decoded['phrases'] as List<dynamic>?) ?? [];
+    for (final rawP in phrases) {
+      final p = rawP as Map<String, dynamic>;
+      final ak = ((p['audioKey'] as String?) ?? '').trim();
+      if (ak.isEmpty) continue;
+      keys.add(ak);
+      if (((p['myanmar'] as String?) ?? '').trim().isNotEmpty) keys.add('${ak}_my');
+      if (((p['responseEn'] as String?) ?? '').trim().isNotEmpty) keys.add('${ak}_res');
+      if (((p['responseMy'] as String?) ?? '').trim().isNotEmpty) keys.add('${ak}_res_my');
+    }
+    return keys;
+  }
+
   Future<CatalogData?> fetchCatalog() async {
     final body = await _httpGetText(catalogUrl);
     if (body == null || body.trim().isEmpty) return null;
     try {
-      final decoded = jsonDecode(body) as Map<String, dynamic>;
-      return CatalogData.fromJson(decoded);
+      return CatalogData.fromJson(jsonDecode(body) as Map<String, dynamic>);
     } catch (_) {
       return null;
     }
@@ -76,7 +135,10 @@ class ContentUpdateService {
     await file.writeAsString(jsonEncode(versions));
   }
 
-  Future<bool> downloadPack(ContentPackInfo pack) async {
+  Future<bool> downloadPack(
+    ContentPackInfo pack, {
+    void Function(int done, int total)? onProgress,
+  }) async {
     final body = await _httpGetText(pack.downloadUrl);
     if (body == null || body.trim().isEmpty) return false;
     try {
@@ -84,6 +146,32 @@ class ContentUpdateService {
       if (!decoded.containsKey('lessons') && !decoded.containsKey('phrases')) {
         return false;
       }
+
+      final audioKeys = _extractAudioKeys(decoded).toList();
+      final lastSlash = pack.downloadUrl.lastIndexOf('/');
+      final defaultAudioBase = lastSlash > 0
+          ? '${pack.downloadUrl.substring(0, lastSlash)}/audio'
+          : '';
+      final audioBase = ((decoded['audioBaseUrl'] as String?) ?? defaultAudioBase).trim();
+
+      if (audioBase.isNotEmpty && audioKeys.isNotEmpty) {
+        final audioDir = await _audioDir();
+        int done = 0;
+        onProgress?.call(0, audioKeys.length);
+
+        const batchSize = 4;
+        for (int i = 0; i < audioKeys.length; i += batchSize) {
+          final end = (i + batchSize).clamp(0, audioKeys.length);
+          final batch = audioKeys.sublist(i, end);
+          await Future.wait(batch.map((key) async {
+            final target = File('${audioDir.path}/$key.mp3');
+            await _downloadBinary('$audioBase/$key.mp3', target);
+            done++;
+            onProgress?.call(done, audioKeys.length);
+          }));
+        }
+      }
+
       final dir = await _packsDir();
       final packFile = File('${dir.path}/${pack.id}.json');
       await packFile.writeAsString(body, encoding: utf8);
@@ -101,6 +189,14 @@ class ContentUpdateService {
     final dir = await _packsDir();
     final packFile = File('${dir.path}/$packId.json');
     if (await packFile.exists()) {
+      try {
+        final decoded = jsonDecode(await packFile.readAsString()) as Map<String, dynamic>;
+        final audioDir = await _audioDir();
+        for (final key in _extractAudioKeys(decoded)) {
+          final f = File('${audioDir.path}/$key.mp3');
+          if (await f.exists()) await f.delete();
+        }
+      } catch (_) {}
       await packFile.delete();
     }
     final versions = await getInstalledVersions();
@@ -119,12 +215,10 @@ class ContentUpdateService {
       if (!await file.exists()) continue;
       try {
         final json = jsonDecode(await file.readAsString()) as Map<String, dynamic>;
-        final rawLessons = (json['lessons'] as List<dynamic>?) ?? [];
-        for (final l in rawLessons) {
+        for (final l in (json['lessons'] as List<dynamic>?) ?? []) {
           lessons.add(LessonModule.fromJson(l as Map<String, dynamic>));
         }
-        final rawPhrases = (json['phrases'] as List<dynamic>?) ?? [];
-        for (final p in rawPhrases) {
+        for (final p in (json['phrases'] as List<dynamic>?) ?? []) {
           phrases.add(DailyPhrase.fromJson(p as Map<String, dynamic>));
         }
       } catch (_) {}
