@@ -1,0 +1,82 @@
+name: Build Baby Shein APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+          channel: 'stable'
+          cache: true
+
+      - name: Set up Python for offline audio bundling
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Ensure asset directories exist
+        run: |
+          mkdir -p assets/data assets/audio assets/images assets/animations
+          touch assets/audio/.gitkeep assets/images/.gitkeep assets/animations/.gitkeep
+
+      - name: Generate bundled offline audio files
+        run: |
+          sudo apt-get update && sudo apt-get install -y espeak-ng ffmpeg
+          pip install --quiet edge-tts
+          python3 scripts/generate_audio.py
+
+      - name: Ensure Android Gradle Wrapper and Launcher Icons exist
+        run: |
+          mkdir -p /tmp/flutter_scaffold
+          cd /tmp/flutter_scaffold
+          flutter create --platforms=android --org com.ngashein --project-name baby_shein .
+          if [ ! -f "${GITHUB_WORKSPACE}/android/gradlew" ] || [ ! -f "${GITHUB_WORKSPACE}/android/gradle/wrapper/gradle-wrapper.jar" ]; then
+            cp /tmp/flutter_scaffold/android/gradlew "${GITHUB_WORKSPACE}/android/gradlew"
+            chmod +x "${GITHUB_WORKSPACE}/android/gradlew"
+            mkdir -p "${GITHUB_WORKSPACE}/android/gradle/wrapper"
+            cp -r /tmp/flutter_scaffold/android/gradle/wrapper/* "${GITHUB_WORKSPACE}/android/gradle/wrapper/"
+          fi
+          for dir in /tmp/flutter_scaffold/android/app/src/main/res/mipmap-*; do
+            base=$(basename "$dir")
+            if [ ! -d "${GITHUB_WORKSPACE}/android/app/src/main/res/${base}" ]; then
+              cp -r "$dir" "${GITHUB_WORKSPACE}/android/app/src/main/res/"
+            fi
+          done
+          cd "${GITHUB_WORKSPACE}"
+
+      - name: Install Flutter dependencies
+        run: flutter pub get
+
+      - name: Run Flutter Analyze
+        run: flutter analyze --no-fatal-infos
+
+      - name: Build Android Release APK
+        run: flutter build apk --release
+
+      - name: Verify APK output
+        run: ls -lh build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload Release APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: baby-shein-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
