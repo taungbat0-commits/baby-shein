@@ -1,0 +1,136 @@
+{
+  "phrases": [
+    {
+      "id": "d1",
+      "english": "Good morning, Mom and Dad!",
+      "myanmar": "မင်္ဂလာနံနက်ခင်းပါ မေမေနဲ့ဖေဖေ!",
+      "situationEn": "Morning",
+      "situationMy": "မနက်အိပ်ရာထချိန်",
+      "emoji": "🌅",
+      "audioKey": "daily_d1",
+      "responseEn": "Good morning, sweetheart!",
+      "responseMy": "မင်္ဂလာနံနက်ခင်းပါ သားလေး/သမီးလေး!"
+    },
+    {
+      "id": "d2",
+      "english": "Please pass me the water.",
+      "myanmar": "ရေလေး ကမ်းပေးပါနော်။",
+      "situationEn": "Mealtime",
+      "situationMy": "ထမင်းစားချိန်",
+      "emoji": "💧",
+      "audioKey": "daily_d2",
+      "responseEn": "Here you go!",
+      "responseMy": "ရော့ ဒီမှာနော်!"
+    },
+    {
+      "id": "d3",
+      "english": "Thank you very much!",
+      "myanmar": "ကျေးဇူးအများကြီးတင်ပါတယ်!",
+      "situationEn": "Polite",
+      "situationMy": "ယဉ်ကျေးစွာပြောခြင်း",
+      "emoji": "🙏",
+      "audioKey": "daily_d3",
+      "responseEn": "You are welcome!",
+      "responseMy": "ရပါတယ်ကွယ်!"
+    },
+    {
+      "id": "d4",
+      "english": "Excuse me, teacher.",
+      "myanmar": "ခွင့်ပြုပါ ဆရာမ။",
+      "situationEn": "Classroom",
+      "situationMy": "စာသင်ခန်းထဲ",
+      "emoji": "🙋",
+      "audioKey": "daily_d4",
+      "responseEn": "Yes, how can I help you?",
+      "responseMy": "ဟုတ်ကဲ့ ဘာကူညီပေးရမလဲ?"
+    },
+    {
+      "id": "d5",
+      "english": "May I drink water, please?",
+      "myanmar": "ရေသောက်ခွင့်ပြုပါနော်။",
+      "situationEn": "Classroom",
+      "situationMy": "စာသင်ခန်းထဲ",
+      "emoji": "🥤",
+      "audioKey": "daily_d5",
+      "responseEn": "Yes, you may.",
+      "responseMy": "ဟုတ်ကဲ့ သောက်နိုင်ပါတယ်။"
+    },
+    {
+      "id": "d6",
+      "english": "Let us play together!",
+      "myanmar": "အတူတူ ကစားကြရအောင်!",
+      "situationEn": "Playtime",
+      "situationMy": "ကစားချိန်",
+      "emoji": "⚽",
+      "audioKey": "daily_d6",
+      "responseEn": "Yay! That sounds fun!",
+      "responseMy": "ရေး! ပျော်စရာကြီးပဲ!"
+    },
+    {
+      "id": "d7",
+      "english": "I am hungry.",
+      "myanmar": "ကျွန်တော်/မ ဗိုက်ဆာနေပြီ။",
+      "situationEn": "Home",
+      "situationMy": "အိမ်မှာ",
+      "emoji": "🍚",
+      "audioKey": "daily_d7",
+      "responseEn": "Let us eat dinner soon.",
+      "responseMy": "ခဏနေရင် ညစာစားကြမယ်နော်။"
+    },
+    {
+      "id": "d8",
+      "english": "I finished my homework.",
+      "myanmar": "အိမ်စာလုပ်ပြီးပါပြီ။",
+      "situationEn": "Study",
+      "situationMy": "စာကျက်ချိန်",
+      "emoji": "📚",
+      "audioKey": "daily_d8",
+      "responseEn": "Great job! I am proud of you.",
+      "responseMy": "အရမ်းတော်တယ်! ဂုဏ်ယူပါတယ်။"
+    },
+    {
+      "id": "d9",
+      "english": "See you tomorrow!",
+      "myanmar": "မနက်ဖြန်မှ တွေ့မယ်နော်!",
+      "situationEn": "Going Home",
+      "situationMy": "ကျောင်းဆင်းချိန်",
+      "emoji": "👋",
+      "audioKey": "daily_d9",
+      "responseEn": "Bye! Have a nice evening.",
+      "responseMy": "တာ့တာ! ပျော်ရွှင်သောညနေခင်းဖြစ်ပါစေ။"
+    },
+    {
+      "id": "d10",
+      "english": "Good night, sweet dreams!",
+      "myanmar": "ကောင်းသောညပါ အိပ်မက်လှလှမက်ပါစေ!",
+      "situationEn": "Bedtime",
+      "situationMy": "အိပ်ရာဝင်ချိန်",
+      "emoji": "🌙",
+      "audioKey": "daily_d10",
+      "responseEn": "Good night! Sleep well.",
+      "responseMy": "ကောင်းသောညပါ ကောင်းကောင်းအိပ်နော်။"
+    },
+    {
+      "id": "d11",
+      "english": "Can I borrow your pencil?",
+      "myanmar": "မင်းခဲတံ ခဏငှားလို့ရမလား?",
+      "situationEn": "Classroom",
+      "situationMy": "စာသင်ခန်းထဲ",
+      "emoji": "✏️",
+      "audioKey": "daily_d11",
+      "responseEn": "Of course, here it is.",
+      "responseMy": "ရတာပေါ့ ရော့ ဒီမှာ။"
+    },
+    {
+      "id": "d12",
+      "english": "I love learning English!",
+      "myanmar": "အင်္ဂလိပ်စာ သင်ရတာ အရမ်းကြိုက်တယ်!",
+      "situationEn": "Learning",
+      "situationMy": "သင်ယူချိန်",
+      "emoji": "⭐",
+      "audioKey": "daily_d12",
+      "responseEn": "Keep going, little star!",
+      "responseMy": "ဆက်ကြိုးစားထားနော် ကြယ်ပွင့်လေး!"
+    }
+  ]
+}
