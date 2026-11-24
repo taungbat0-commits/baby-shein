@@ -4,6 +4,7 @@ class RemoteAnnouncement {
   final String titleMy;
   final String messageEn;
   final String messageMy;
+  final String marqueeText;
 
   const RemoteAnnouncement({
     required this.id,
@@ -11,6 +12,7 @@ class RemoteAnnouncement {
     required this.titleMy,
     required this.messageEn,
     required this.messageMy,
+    this.marqueeText = '',
   });
 
   factory RemoteAnnouncement.fromJson(Map<String, dynamic> json) {
@@ -20,6 +22,7 @@ class RemoteAnnouncement {
       titleMy: (json['titleMy'] as String?) ?? '',
       messageEn: (json['messageEn'] as String?) ?? '',
       messageMy: (json['messageMy'] as String?) ?? '',
+      marqueeText: (json['marqueeText'] as String?) ?? '',
     );
   }
 }

@@ -32,6 +32,8 @@ class AppState extends ChangeNotifier {
   CatalogData? _remoteCatalog;
   Map<String, int> _installedPacks = {};
   bool _checkingUpdates = false;
+  bool _noticeHiddenThisSession = false;
+  bool _popupShownThisSession = false;
   String? _downloadingPackId;
   String? _downloadProgressText;
 
@@ -60,7 +62,6 @@ class AppState extends ChangeNotifier {
   RemoteAnnouncement? get activeAnnouncement {
     final ann = _remoteCatalog?.announcement;
     if (ann == null || ann.id.isEmpty) return null;
-    if (ann.id == prefs.dismissedNoticeId) return null;
     return ann;
   }
 
@@ -74,7 +75,28 @@ class AppState extends ChangeNotifier {
     return count;
   }
 
-  bool get hasNewUpdates => activeAnnouncement != null || availableNewPackCount > 0;
+  bool get hasNewUpdates =>
+      !_noticeHiddenThisSession &&
+      (activeAnnouncement != null || availableNewPackCount > 0);
+
+  bool get shouldShowPopup =>
+      !_popupShownThisSession && activeAnnouncement != null;
+
+  void markPopupShown() {
+    _popupShownThisSession = true;
+  }
+
+  String get announcementBannerText {
+    final ann = activeAnnouncement;
+    if (ann != null) {
+      if (ann.marqueeText.trim().isNotEmpty) return ann.marqueeText.trim();
+      final t = ann.titleMy.isNotEmpty ? ann.titleMy : ann.titleEn;
+      final m = ann.messageMy.isNotEmpty ? ann.messageMy : ann.messageEn;
+      if (t.isNotEmpty && m.isNotEmpty) return '$t  •  $m';
+      return t.isNotEmpty ? t : m;
+    }
+    return 'သင်ခန်းစာအသစ် $availableNewPackCount ခု ရောက်နေပါပြီ! နှိပ်ပြီး Download ဆွဲထည့်နိုင်ပါတယ်';
+  }
 
   Future<void> initialize() async {
     await prefs.init();
@@ -371,7 +393,7 @@ class AppState extends ChangeNotifier {
     final ok = await contentUpdates.downloadPack(
       pack,
       onProgress: (done, total) {
-        _downloadProgressText = 'Audio \$done / \$total';
+        _downloadProgressText = 'Audio $done / $total';
         notifyListeners();
       },
     );
@@ -391,11 +413,8 @@ class AppState extends ChangeNotifier {
   }
 
   Future<void> dismissAnnouncement() async {
-    final ann = _remoteCatalog?.announcement;
-    if (ann != null && ann.id.isNotEmpty) {
-      await prefs.setDismissedNoticeId(ann.id);
-      notifyListeners();
-    }
+    _noticeHiddenThisSession = true;
+    notifyListeners();
   }
 
   @override

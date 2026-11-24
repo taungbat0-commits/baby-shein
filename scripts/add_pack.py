@@ -210,9 +210,10 @@ def add_daily_pack(cat: dict, base_url: str) -> str:
 
 
 def update_announcement_only(cat: dict) -> str:
-    print("\n--- သတိပေးစာ (Notification) ပို့ရန် ---")
-    title_my = ask("ခေါင်းစဉ် (Myanmar)")
-    msg_my = ask("အကြောင်းအရာ (Myanmar)")
+    print("\n--- သတိပေးစာ (Popup + လော်စာသားပြေး) ပို့ရန် ---")
+    title_my = ask("Popup ခေါင်းစဉ် (Myanmar)")
+    msg_my = ask("Popup အကြောင်းအရာ (Myanmar)")
+    marquee = ask("လော်ပုံစာသားပြေး (ဗလာထားရင် Popup စာနဲ့အတူတူပြမည်)", "")
     title_en = ask("Title (English)", "Baby Shein Notice")
     notice_id = f"notice_{datetime.now().strftime('%Y%m%d_%H%M')}"
     cat["announcement"] = {
@@ -221,6 +222,7 @@ def update_announcement_only(cat: dict) -> str:
         "titleMy": title_my,
         "messageEn": msg_my,
         "messageMy": msg_my,
+        "marqueeText": marquee,
     }
     save_catalog(cat)
     return f"Update announcement: {title_en}"

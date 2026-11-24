@@ -5,6 +5,7 @@ import '../models/profile_model.dart';
 import '../services/app_state.dart';
 import '../theme/app_theme.dart';
 import '../widgets/bouncy_button.dart';
+import '../widgets/announcement_marquee.dart';
 import '../widgets/mascot_banner.dart';
 import 'alphabet_screen.dart';
 import 'certificate_screen.dart';
@@ -52,6 +53,19 @@ class HomeScreen extends StatelessWidget {
     final g1Done = state.completedCountForGrade(1);
     final g2Total = state.repository.grade2Lessons.length;
     final g2Done = state.completedCountForGrade(2);
+
+    if (state.shouldShowPopup) {
+      final ann = state.activeAnnouncement!;
+      state.markPopupShown();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!context.mounted) return;
+        AnnouncementPopup.show(
+          context,
+          announcement: ann,
+          onViewLessons: () => _open(context, const DownloadsScreen()),
+        );
+      });
+    }
 
     return Scaffold(
       body: SafeArea(
@@ -149,42 +163,24 @@ class HomeScreen extends StatelessWidget {
               ),
               if (state.hasNewUpdates) ...[
                 const SizedBox(height: 12),
-                BouncyButton(
-                  onTap: () => _open(context, const DownloadsScreen()),
-                  color: AppColors.sunYellowLight,
-                  border: Border.all(color: AppColors.softPink, width: 2),
-                  padding: const EdgeInsets.all(12),
-                  child: Row(
-                    children: [
-                      const Text('🔔', style: TextStyle(fontSize: 28)),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              state.activeAnnouncement?.titleMy.isNotEmpty == true
-                                  ? state.activeAnnouncement!.titleMy
-                                  : 'သင်ခန်းစာအသစ် \${state.availableNewPackCount} ခု ရောက်နေပါပြီ!',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 14,
-                                color: AppColors.textDark,
-                              ),
-                            ),
-                            Text(
-                              state.activeAnnouncement?.messageMy.isNotEmpty == true
-                                  ? state.activeAnnouncement!.messageMy
-                                  : 'နှိပ်ပြီး ကြိုက်နှစ်သက်ရာ Download ဆွဲထည့်နိုင်ပါတယ်',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: AppColors.textMuted,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
+                AnnouncementMarquee(
+                  text: state.announcementBannerText,
+                  autoHideSeconds: 15,
+                  onTap: () {
+                    final ann = state.activeAnnouncement;
+                    if (ann != null) {
+                      AnnouncementPopup.show(
+                        context,
+                        announcement: ann,
+                        onViewLessons: () => _open(context, const DownloadsScreen()),
+                      );
+                    } else {
+                      _open(context, const DownloadsScreen());
+                    }
+                  },
+                  onClose: () => state.dismissAnnouncement(),
+                ),
+              ],
                         ),
                       ),
                       IconButton(
@@ -360,7 +356,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Text(
-                          '\${state.availableNewPackCount} NEW',
+                          '${state.availableNewPackCount} NEW',
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w900,
