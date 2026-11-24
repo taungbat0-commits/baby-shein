@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.ngashein.baby"
-    compileSdk = 35
+    compileSdkVersion 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -20,8 +20,8 @@ android {
 
     defaultConfig {
         applicationId = "com.ngashein.baby"
-        minSdk = 23
-        targetSdk = 35
+        minSdkVersion 23
+        targetSdkVersion 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled = true
