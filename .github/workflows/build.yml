@@ -43,24 +43,34 @@ jobs:
           pip install --quiet edge-tts
           python3 scripts/generate_audio.py
 
-      - name: Ensure Android Gradle Wrapper exists
+      - name: Setup Android Gradle 8.7 Wrapper and Base Icons
         run: |
           mkdir -p /tmp/flutter_scaffold
           cd /tmp/flutter_scaffold
           flutter create --platforms=android --org com.ngashein --project-name baby_shein .
-          if [ ! -f "${GITHUB_WORKSPACE}/android/gradlew" ] || [ ! -f "${GITHUB_WORKSPACE}/android/gradle/wrapper/gradle-wrapper.jar" ]; then
-            cp /tmp/flutter_scaffold/android/gradlew "${GITHUB_WORKSPACE}/android/gradlew"
-            chmod +x "${GITHUB_WORKSPACE}/android/gradlew"
-            mkdir -p "${GITHUB_WORKSPACE}/android/gradle/wrapper"
-            cp -r /tmp/flutter_scaffold/android/gradle/wrapper/* "${GITHUB_WORKSPACE}/android/gradle/wrapper/"
-          fi
+          cp /tmp/flutter_scaffold/android/gradlew "${GITHUB_WORKSPACE}/android/gradlew"
+          chmod +x "${GITHUB_WORKSPACE}/android/gradlew"
+          mkdir -p "${GITHUB_WORKSPACE}/android/gradle/wrapper"
+          cp -r /tmp/flutter_scaffold/android/gradle/wrapper/* "${GITHUB_WORKSPACE}/android/gradle/wrapper/"
+          printf 'distributionBase=GRADLE_USER_HOME\ndistributionPath=wrapper/dists\nzipStoreBase=GRADLE_USER_HOME\nzipStorePath=wrapper/dists\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-8.7-all.zip\n' > "${GITHUB_WORKSPACE}/android/gradle/wrapper/gradle-wrapper.properties"
+          for dir in /tmp/flutter_scaffold/android/app/src/main/res/mipmap-*; do
+            base=$(basename "$dir")
+            if [ ! -d "${GITHUB_WORKSPACE}/android/app/src/main/res/${base}" ]; then
+              cp -r "$dir" "${GITHUB_WORKSPACE}/android/app/src/main/res/"
+            fi
+          done
           cd "${GITHUB_WORKSPACE}"
 
       - name: Install Flutter dependencies
         run: flutter pub get
 
       - name: Generate Baby Shein App Launcher Icon
-        run: dart run flutter_launcher_icons
+        run: |
+          if [ -f "assets/images/baby.png" ]; then
+            dart run flutter_launcher_icons
+          else
+            echo "baby.png missing, using default launcher icon"
+          fi
 
       - name: Run Flutter Analyze
         run: flutter analyze --no-fatal-infos
