@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../services/app_state.dart';
@@ -175,6 +176,32 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
+          Card(
+            child: Column(
+              children: [
+                const ListTile(
+                  leading: Text('👨‍💻', style: TextStyle(fontSize: 24)),
+                  title: Text('Developer Info', style: TextStyle(fontWeight: FontWeight.w900)),
+                  subtitle: Text('Name: NgaShein', style: TextStyle(fontWeight: FontWeight.w700)),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  leading: const Text('✈️', style: TextStyle(fontSize: 22)),
+                  title: const Text('Telegram: @ngashein528',
+                      style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.skyBlue)),
+                  subtitle: const Text('နှိပ်ပြီး Copy ကူးနိုင်ပါသည်'),
+                  trailing: const Icon(Icons.copy_rounded, color: AppColors.skyBlue),
+                  onTap: () {
+                    Clipboard.setData(const ClipboardData(text: '@ngashein528'));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Copied @ngashein528!')),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -191,8 +218,8 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  'App: Baby Shein (com.ngashein.baby)\n'
-                  'Bundled Audio Files: ${state.audio.bundledAudioCount}\n'
+                  'App: Baby Shein\n'
+                  'Bundled Audio Files: ${state.audio.bundledAudioCount} (EN + MY)\n'
                   'Total Lessons: ${state.repository.allLessons.length} (Grade 1 & Grade 2)\n'
                   'Version: 1.0.0',
                   style: const TextStyle(fontSize: 13.5, color: AppColors.textMuted),

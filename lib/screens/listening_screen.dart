@@ -49,14 +49,24 @@ class _ListeningScreenState extends State<ListeningScreen> {
   LessonItem? get _currentPractice =>
       _pool.isEmpty ? null : _pool[_practiceIndex % _pool.length];
 
-  void _playPracticeItem({bool slow = false}) {
+  void _playPracticeItem({bool slow = false, String lang = 'en'}) {
     final item = _currentPractice;
     if (item == null) return;
     final audio = context.read<AppState>().audio;
     if (_sentenceMode) {
-      audio.speak(text: item.exampleEn, audioKey: item.exampleAudioKey, slow: slow);
+      audio.speak(
+        text: lang == 'my' ? item.exampleMy : item.exampleEn,
+        audioKey: item.exampleAudioKey,
+        slow: slow,
+        lang: lang,
+      );
     } else {
-      audio.speak(text: item.english, audioKey: item.audioKey, slow: slow);
+      audio.speak(
+        text: lang == 'my' ? item.myanmar : item.english,
+        audioKey: item.audioKey,
+        slow: slow,
+        lang: lang,
+      );
     }
   }
 
@@ -250,8 +260,9 @@ class _ListeningScreenState extends State<ListeningScreen> {
                 const SizedBox(height: 18),
                 AudioControlBar(
                   primaryColor: AppColors.lavender,
-                  onListen: () => _playPracticeItem(slow: false),
-                  onSlow: () => _playPracticeItem(slow: true),
+                  onListen: () => _playPracticeItem(slow: false, lang: 'en'),
+                  onListenMy: () => _playPracticeItem(slow: false, lang: 'my'),
+                  onSlow: () => state.audio.replay(slow: true),
                   onRepeat: () => state.audio.replay(slow: state.slowByDefault),
                 ),
               ],

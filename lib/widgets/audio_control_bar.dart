@@ -4,6 +4,7 @@ import 'bouncy_button.dart';
 
 class AudioControlBar extends StatelessWidget {
   final VoidCallback onListen;
+  final VoidCallback? onListenMy;
   final VoidCallback onSlow;
   final VoidCallback onRepeat;
   final Color primaryColor;
@@ -11,6 +12,7 @@ class AudioControlBar extends StatelessWidget {
   const AudioControlBar({
     super.key,
     required this.onListen,
+    this.onListenMy,
     required this.onSlow,
     required this.onRepeat,
     this.primaryColor = AppColors.skyBlue,
@@ -18,121 +20,118 @@ class AudioControlBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Expanded(
-          flex: 4,
-          child: BouncyButton(
-            onTap: onListen,
-            color: primaryColor,
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.volume_up_rounded, color: Colors.white, size: 24),
-                SizedBox(width: 6),
-                Flexible(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'Listen',
+        Row(
+          children: [
+            Expanded(
+              child: BouncyButton(
+                onTap: onListen,
+                color: primaryColor,
+                padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 10),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.volume_up_rounded, color: Colors.white, size: 22),
+                    SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        'EN • အင်္ဂလိပ်',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 15,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 14,
                         ),
                       ),
-                      Text(
-                        'နားထောင်မယ်',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            if (onListenMy != null) ...[
+              const SizedBox(width: 10),
+              Expanded(
+                child: BouncyButton(
+                  onTap: onListenMy,
+                  color: AppColors.softPink,
+                  padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 10),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('🇲🇲', style: TextStyle(fontSize: 17)),
+                      SizedBox(width: 6),
+                      Flexible(
+                        child: Text(
+                          'MY • မြန်မာ',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+            ],
+          ],
         ),
-        const SizedBox(width: 10),
-        Expanded(
-          flex: 3,
-          child: BouncyButton(
-            onTap: onSlow,
-            color: AppColors.sunYellowLight,
-            border: Border.all(color: AppColors.sunYellow, width: 2),
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-            child: const Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Expanded(
+              child: BouncyButton(
+                onTap: onSlow,
+                color: AppColors.sunYellowLight,
+                border: Border.all(color: AppColors.sunYellow, width: 2),
+                padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 8),
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('🐢', style: TextStyle(fontSize: 16)),
-                    SizedBox(width: 4),
+                    SizedBox(width: 6),
                     Text(
-                      'Slow',
+                      'Slow • ဖြည်းဖြည်း',
                       style: TextStyle(
                         color: AppColors.textDark,
                         fontWeight: FontWeight.w800,
-                        fontSize: 14,
+                        fontSize: 13,
                       ),
                     ),
                   ],
                 ),
-                Text(
-                  'ဖြည်းဖြည်း',
-                  style: TextStyle(
-                    color: AppColors.textMuted,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          flex: 3,
-          child: BouncyButton(
-            onTap: onRepeat,
-            color: AppColors.mintGreenLight,
-            border: Border.all(color: AppColors.mintGreen, width: 2),
-            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-            child: const Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
+            const SizedBox(width: 10),
+            Expanded(
+              child: BouncyButton(
+                onTap: onRepeat,
+                color: AppColors.mintGreenLight,
+                border: Border.all(color: AppColors.mintGreen, width: 2),
+                padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 8),
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.replay_rounded, color: AppColors.mintGreen, size: 18),
-                    SizedBox(width: 3),
+                    SizedBox(width: 5),
                     Text(
-                      'Repeat',
+                      'Repeat • ထပ်နားထောင်',
                       style: TextStyle(
                         color: AppColors.textDark,
                         fontWeight: FontWeight.w800,
-                        fontSize: 14,
+                        fontSize: 12.5,
                       ),
                     ),
                   ],
                 ),
-                Text(
-                  'ထပ်နားထောင်',
-                  style: TextStyle(
-                    color: AppColors.textMuted,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ],
     );

@@ -9,8 +9,10 @@ class AudioService {
   Set<String> _bundledAssets = {};
   bool _initialized = false;
   bool _soundEnabled = true;
+
   String? _lastKey;
   String? _lastText;
+  String _lastLang = 'en';
 
   Future<void> init({bool soundEnabled = true}) async {
     _soundEnabled = soundEnabled;
@@ -28,7 +30,7 @@ class AudioService {
 
     try {
       await _tts.setLanguage('en-US');
-      await _tts.setPitch(1.08);
+      await _tts.setPitch(1.06);
       await _tts.setVolume(1.0);
     } catch (_) {}
 
@@ -61,19 +63,24 @@ class AudioService {
     required String text,
     String? audioKey,
     bool slow = false,
+    String lang = 'en',
   }) async {
     if (!_soundEnabled) return;
     if (!_initialized) await init(soundEnabled: _soundEnabled);
 
     _lastKey = audioKey;
     _lastText = text;
+    _lastLang = lang;
     await stop();
 
     if (audioKey != null && audioKey.isNotEmpty) {
-      final assetRelPath = _findAssetRelativePath(audioKey);
+      final lookupKey = (lang == 'my' && !audioKey.endsWith('_my'))
+          ? '${audioKey}_my'
+          : audioKey;
+      final assetRelPath = _findAssetRelativePath(lookupKey);
       if (assetRelPath != null) {
         try {
-          await _player.setPlaybackRate(slow ? 0.68 : 1.0);
+          await _player.setPlaybackRate(slow ? 0.72 : 1.0);
           await _player.play(AssetSource(assetRelPath));
           return;
         } catch (_) {}
@@ -81,7 +88,7 @@ class AudioService {
     }
 
     try {
-      await _tts.setLanguage('en-US');
+      await _tts.setLanguage(lang == 'my' ? 'my-MM' : 'en-US');
       await _tts.setSpeechRate(slow ? 0.28 : 0.46);
       await _tts.speak(text);
     } catch (_) {}
@@ -89,7 +96,12 @@ class AudioService {
 
   Future<void> replay({bool slow = false}) async {
     if (_lastText == null) return;
-    await speak(text: _lastText!, audioKey: _lastKey, slow: slow);
+    await speak(
+      text: _lastText!,
+      audioKey: _lastKey,
+      slow: slow,
+      lang: _lastLang,
+    );
   }
 
   bool hasBundledAudio(String audioKey) => _findAssetRelativePath(audioKey) != null;

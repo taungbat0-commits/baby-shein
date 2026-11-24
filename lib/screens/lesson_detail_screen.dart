@@ -27,21 +27,20 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _playAndRecordCurrent();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _playCurrent(lang: 'en'));
   }
 
-  Future<void> _playAndRecordCurrent({bool? slowOverride}) async {
+  Future<void> _playCurrent({bool? slowOverride, String lang = 'en'}) async {
     if (!mounted) return;
     final state = context.read<AppState>();
     final item = _currentItem;
     final slow = slowOverride ?? state.slowByDefault;
 
     await state.audio.speak(
-      text: item.english,
+      text: lang == 'my' ? item.myanmar : item.english,
       audioKey: item.audioKey,
       slow: slow,
+      lang: lang,
     );
     await state.recordWordLearned(widget.lesson, item);
   }
@@ -49,7 +48,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
   void _goToIndex(int next) {
     if (next < 0 || next >= widget.lesson.items.length) return;
     setState(() => _index = next);
-    _playAndRecordCurrent();
+    _playCurrent(lang: 'en');
   }
 
   Future<void> _finishLesson() async {
@@ -71,9 +70,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
       starsEarned: 3,
       newBadges: badges,
     );
-    if (mounted) {
-      Navigator.of(context).pop();
-    }
+    if (mounted) Navigator.of(context).pop();
   }
 
   @override
@@ -99,11 +96,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                 ),
                 child: Text(
                   '${_index + 1} / ${items.length}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    color: accentColor,
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.w900, color: accentColor, fontSize: 14),
                 ),
               ),
             ),
@@ -113,7 +106,6 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Progress bar
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: ClipRRect(
@@ -126,8 +118,6 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                 ),
               ),
             ),
-
-            // Quick jump strip (great for Numbers 1-100 and A-Z)
             SizedBox(
               height: 46,
               child: ListView.builder(
@@ -144,9 +134,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                       decoration: BoxDecoration(
                         color: selected ? accentColor : Colors.white,
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: selected ? accentColor : AppColors.border,
-                        ),
+                        border: Border.all(color: selected ? accentColor : AppColors.border),
                       ),
                       alignment: Alignment.center,
                       child: Text(
@@ -164,8 +152,6 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                 },
               ),
             ),
-
-            // Main Flashcard Content
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(16, 6, 16, 16),
@@ -178,30 +164,19 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(28),
                         border: Border.all(color: accentColor.withAlpha(110), width: 2.5),
-                        boxShadow: [
-                          BoxShadow(
-                            color: accentColor.withAlpha(40),
-                            blurRadius: 16,
-                            offset: const Offset(0, 6),
-                          ),
-                        ],
                       ),
                       child: Column(
                         children: [
                           GestureDetector(
-                            onTap: () => _playAndRecordCurrent(),
-                            child: KidsIllustration(
-                              item: item,
-                              accentColor: accentColor,
-                              size: 132,
-                            ),
+                            onTap: () => _playCurrent(lang: 'en'),
+                            child: KidsIllustration(item: item, accentColor: accentColor, size: 126),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 14),
                           Text(
                             item.english,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontSize: 30,
+                              fontSize: 28,
                               fontWeight: FontWeight.w900,
                               color: AppColors.textDark,
                             ),
@@ -225,28 +200,31 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                             ),
                           ],
                           if (state.showMyanmarHints) ...[
-                            const SizedBox(height: 10),
-                            Text(
-                              item.myanmar,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 21,
-                                fontWeight: FontWeight.w800,
-                                color: AppColors.softPink,
+                            const SizedBox(height: 8),
+                            GestureDetector(
+                              onTap: () => _playCurrent(lang: 'my'),
+                              child: Text(
+                                item.myanmar,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 21,
+                                  fontWeight: FontWeight.w800,
+                                  color: AppColors.softPink,
+                                ),
                               ),
                             ),
                           ],
-                          const SizedBox(height: 18),
+                          const SizedBox(height: 16),
                           AudioControlBar(
                             primaryColor: accentColor,
-                            onListen: () => _playAndRecordCurrent(slowOverride: false),
-                            onSlow: () => _playAndRecordCurrent(slowOverride: true),
+                            onListen: () => _playCurrent(slowOverride: false, lang: 'en'),
+                            onListenMy: () => _playCurrent(slowOverride: false, lang: 'my'),
+                            onSlow: () => state.audio.replay(slow: true),
                             onRepeat: () => state.audio.replay(slow: state.slowByDefault),
                           ),
                         ],
                       ),
                     ),
-
                     if (item.grammarNote != null && item.grammarNote!.isNotEmpty) ...[
                       const SizedBox(height: 12),
                       Container(
@@ -264,18 +242,13 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                             Expanded(
                               child: Text(
                                 item.grammarNote!,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: AppColors.textDark,
-                                ),
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                               ),
                             ),
                           ],
                         ),
                       ),
                     ],
-
                     if (item.exampleEn.isNotEmpty) ...[
                       const SizedBox(height: 12),
                       Container(
@@ -289,43 +262,13 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Example • ဥပမာဝါကျ',
-                                  style: TextStyle(
-                                    fontSize: 12.5,
-                                    fontWeight: FontWeight.w800,
-                                    color: AppColors.skyBlue,
-                                  ),
-                                ),
-                                BouncyButton(
-                                  onTap: () => state.audio.speak(
-                                    text: item.exampleEn,
-                                    audioKey: item.exampleAudioKey,
-                                    slow: state.slowByDefault,
-                                  ),
-                                  color: AppColors.skyBlue,
-                                  borderRadius: 14,
-                                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                                  child: const Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.volume_up_rounded, color: Colors.white, size: 16),
-                                      SizedBox(width: 4),
-                                      Text(
-                                        'Play Sentence',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w800,
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                            const Text(
+                              'Example • ဥပမာဝါကျ',
+                              style: TextStyle(
+                                fontSize: 12.5,
+                                fontWeight: FontWeight.w800,
+                                color: AppColors.skyBlue,
+                              ),
                             ),
                             const SizedBox(height: 8),
                             Text(
@@ -341,12 +284,76 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                               Text(
                                 item.exampleMy,
                                 style: const TextStyle(
-                                  fontSize: 14.5,
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.textMuted,
                                 ),
                               ),
                             ],
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: BouncyButton(
+                                    onTap: () => state.audio.speak(
+                                      text: item.exampleEn,
+                                      audioKey: item.exampleAudioKey,
+                                      slow: state.slowByDefault,
+                                      lang: 'en',
+                                    ),
+                                    color: AppColors.skyBlue,
+                                    borderRadius: 14,
+                                    padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 10),
+                                    child: const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.volume_up_rounded, color: Colors.white, size: 18),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          'EN ဝါကျ',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w800,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                if (item.exampleMy.isNotEmpty) ...[
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: BouncyButton(
+                                      onTap: () => state.audio.speak(
+                                        text: item.exampleMy,
+                                        audioKey: item.exampleAudioKey,
+                                        slow: state.slowByDefault,
+                                        lang: 'my',
+                                      ),
+                                      color: AppColors.softPink,
+                                      borderRadius: 14,
+                                      padding: const EdgeInsets.symmetric(vertical: 9, horizontal: 10),
+                                      child: const Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text('🇲🇲', style: TextStyle(fontSize: 15)),
+                                          SizedBox(width: 5),
+                                          Text(
+                                            'MY ဝါကျ',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -355,8 +362,6 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                 ),
               ),
             ),
-
-            // Bottom Navigation Buttons
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 14),
               child: Row(
@@ -374,14 +379,7 @@ class _LessonDetailScreenState extends State<LessonDetailScreen> {
                           children: [
                             Icon(Icons.arrow_back_rounded, color: AppColors.textDark),
                             SizedBox(width: 4),
-                            Text(
-                              'Back',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w800,
-                                fontSize: 16,
-                                color: AppColors.textDark,
-                              ),
-                            ),
+                            Text('Back', style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
                           ],
                         ),
                       ),
