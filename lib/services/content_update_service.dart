@@ -7,6 +7,8 @@ import 'package:path_provider/path_provider.dart';
 import '../models/content_pack_model.dart';
 import '../models/lesson_model.dart';
 
+typedef VersionMap = Map<String, int>;
+
 class DownloadedContent {
   final List<LessonModule> lessons;
   final List<DailyPhrase> phrases;
@@ -119,7 +121,7 @@ class ContentUpdateService {
     }
   }
 
-  Future> getInstalledVersions() async {
+  Future<VersionMap> getInstalledVersions() async {
     try {
       final file = await _metaFile();
       if (!await file.exists()) return {};
@@ -130,7 +132,7 @@ class ContentUpdateService {
     }
   }
 
-  Future<void> _saveInstalledVersions(Map<String, int> versions) async {
+  Future<void> _saveInstalledVersions(VersionMap versions) async {
     final file = await _metaFile();
     await file.writeAsString(jsonEncode(versions));
   }
