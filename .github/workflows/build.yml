@@ -78,8 +78,30 @@ jobs:
       - name: Run Flutter Analyze
         run: flutter analyze --no-fatal-infos
 
-      - name: Build Android Release APK
-        run: flutter build apk --release
+      - name: Decode Release Keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "KEYSTORE_BASE64 secret is missing!"
+            exit 1
+          fi
+          echo "$KEYSTORE_BASE64" | tr -d '\n\r ' | base64 --decode > android/app/release-keystore.jks
+          printf "storePassword=%s\nkeyPassword=%s\nkeyAlias=%s\nstoreFile=release-keystore.jks\n" \
+            "$KEYSTORE_PASSWORD" "$KEY_PASSWORD" "$KEY_ALIAS" > android/key.properties
+
+      - name: Build Signed Release APK
+        run: |
+          VERSION_CODE=${{ github.run_number }}
+          VERSION_NAME="1.0.${VERSION_CODE}"
+          echo "Building Baby Shein v${VERSION_NAME} (${VERSION_CODE})"
+          flutter build apk --release \
+            --build-name="${VERSION_NAME}" \
+            --build-number="${VERSION_CODE}" \
+            --dart-define=APP_VERSION="${VERSION_NAME}"
 
       - name: Verify APK output
         run: ls -lh build/app/outputs/flutter-apk/app-release.apk
@@ -87,6 +109,6 @@ jobs:
       - name: Upload Release APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: baby-shein-release-apk
+          name: baby-shein-v1.0.${{ github.run_number }}
           path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30

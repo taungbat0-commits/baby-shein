@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import '../services/app_state.dart';
 import '../theme/app_theme.dart';
 
+
+const String _kAppVersion = String.fromEnvironment('APP_VERSION', defaultValue: '$_kAppVersion');
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
@@ -221,7 +223,7 @@ class SettingsScreen extends StatelessWidget {
                   'App: Baby Shein\n'
                   'Bundled Audio Files: ${state.audio.bundledAudioCount} (EN + MY)\n'
                   'Total Lessons: ${state.repository.allLessons.length} (Grade 1 & Grade 2)\n'
-                  'Version: 1.0.0',
+                  'Version: $_kAppVersion',
                   style: const TextStyle(fontSize: 13.5, color: AppColors.textMuted),
                 ),
               ],
