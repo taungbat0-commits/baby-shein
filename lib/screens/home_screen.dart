@@ -5,6 +5,7 @@ import '../models/profile_model.dart';
 import '../services/app_state.dart';
 import '../theme/app_theme.dart';
 import '../widgets/announcement_marquee.dart';
+import '../widgets/app_update_dialog.dart';
 import '../widgets/bouncy_button.dart';
 import '../widgets/mascot_banner.dart';
 import 'alphabet_screen.dart';
@@ -40,7 +41,18 @@ class HomeScreen extends StatelessWidget {
     final g2Done = state.completedCountForGrade(2);
     final g2Total = state.repository.grade2Lessons.length;
 
-    if (state.shouldShowPopup) {
+    if (state.shouldShowAppUpdatePopup) {
+      final update = state.availableAppUpdate!;
+      state.markAppUpdatePopupShown();
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!context.mounted) return;
+        AppUpdateDialog.show(
+          context,
+          update: update,
+          currentVersionName: state.appVersionName,
+        );
+      });
+    } else if (state.shouldShowPopup) {
       final ann = state.activeAnnouncement!;
       state.markPopupShown();
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -59,7 +71,7 @@ class HomeScreen extends StatelessWidget {
       ('🎧', 'Listening', 'နားထောင်မှုလေ့ကျင့်ရန်', AppColors.lavender, AppColors.lavenderLight, () => _open(context, const ListeningScreen())),
       ('🎤', 'Speaking', 'အသံထွက်ပြောလေ့ကျင့်ရန်', AppColors.softPink, AppColors.softPinkLight, () => _open(context, const SpeakingScreen())),
       ('✍️', 'Writing', 'လက်ရေးလေ့ကျင့်ရန်', AppColors.sunYellow, AppColors.sunYellowLight, () => _open(context, const WritingScreen())),
-      ('🎮', 'Learning Games', 'ပညာရေးဂိမ်း ၅ မျိုး', AppColors.peach, AppColors.peachLight, () => _open(context, const GamesHubScreen())),
+      ('🎮', 'Learning Games', 'ပညာရေးဂိမ်း ၉ မျိုး', AppColors.peach, AppColors.peachLight, () => _open(context, const GamesHubScreen())),
       ('💬', 'Daily English', 'နေ့စဉ်သုံးစကားပြော', AppColors.skyBlue, AppColors.skyBlueLight, () => _open(context, const DailyEnglishScreen())),
       ('📊', 'My Progress', 'တိုးတက်မှုမှတ်တမ်း', AppColors.mintGreen, AppColors.mintGreenLight, () => _open(context, const ProgressScreen())),
     ];

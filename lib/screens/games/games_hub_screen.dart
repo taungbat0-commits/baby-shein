@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_theme.dart';
 import '../../widgets/bouncy_button.dart';
+import 'challenge_game_screen.dart';
 import 'choose_answer_game.dart';
 import 'listen_choose_game.dart';
 import 'match_word_game.dart';
 import 'missing_letter_game.dart';
+import 'memory_flip_game.dart';
+import 'myanmar_to_english_game.dart';
 import 'spell_word_game.dart';
+import 'true_false_game.dart';
 
 class GamesHubScreen extends StatefulWidget {
   const GamesHubScreen({super.key});
@@ -64,6 +68,38 @@ class _GamesHubScreenState extends State<GamesHubScreen> {
         AppColors.softPink,
         AppColors.softPinkLight,
         () => _play(MissingLetterGame(difficulty: _difficulty)),
+      ),
+      (
+        '🃏',
+        'Memory Flip Cards',
+        'မှတ်ဉာဏ်ကတ်လှန် ဂိမ်းကစားမယ်',
+        AppColors.sunYellow,
+        AppColors.sunYellowLight,
+        () => _play(MemoryFlipGame(difficulty: _difficulty)),
+      ),
+      (
+        '⚡',
+        'True Or False',
+        'မှန် / မှား ရွေးကစားမယ်',
+        AppColors.skyBlue,
+        AppColors.skyBlueLight,
+        () => _play(TrueFalseGame(difficulty: _difficulty)),
+      ),
+      (
+        '🇲🇲',
+        'Myanmar → English',
+        'မြန်မာမှ အင်္ဂလိပ် ရွေးမယ်',
+        AppColors.mintGreen,
+        AppColors.mintGreenLight,
+        () => _play(MyanmarToEnglishGame(difficulty: _difficulty)),
+      ),
+      (
+        '🎯',
+        'Sentence & Quiz Packs',
+        'ဝါကျစီနှင့် ဉာဏ်စမ်းဂိမ်းများ (အသစ်ထည့်နိုင်)',
+        AppColors.lavender,
+        AppColors.lavenderLight,
+        () => _play(GamePacksScreen(difficulty: _difficulty)),
       ),
     ];
 

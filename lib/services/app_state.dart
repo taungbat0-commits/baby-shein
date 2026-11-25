@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import '../data/default_game_packs.dart';
 import '../models/content_pack_model.dart';
 import '../models/lesson_model.dart';
 import '../models/profile_model.dart';
@@ -12,6 +13,9 @@ import 'lesson_repository.dart';
 import 'preferences_service.dart';
 import 'speech_service.dart';
 
+
+const int kAppVersionCode = int.fromEnvironment('APP_VERSION_CODE', defaultValue: 1);
+const String kAppVersionName = String.fromEnvironment('APP_VERSION', defaultValue: '1.0.0');
 class AppState extends ChangeNotifier {
   final DatabaseService db = DatabaseService();
   final PreferencesService prefs = PreferencesService();
@@ -34,6 +38,8 @@ class AppState extends ChangeNotifier {
   bool _checkingUpdates = false;
   bool _noticeHiddenThisSession = false;
   bool _popupShownThisSession = false;
+  bool _updatePopupShownThisSession = false;
+  List<GameChallengePack> _downloadedGamePacks = [];
   String? _downloadingPackId;
   String? _downloadProgressText;
 
@@ -84,6 +90,34 @@ class AppState extends ChangeNotifier {
 
   void markPopupShown() {
     _popupShownThisSession = true;
+  }
+
+  int get appVersionCode => kAppVersionCode;
+  String get appVersionName => kAppVersionName;
+
+  AppUpdateInfo? get availableAppUpdate {
+    final up = _remoteCatalog?.appUpdate;
+    if (up == null || up.apkUrl.trim().isEmpty) return null;
+    if (up.latestVersionCode > kAppVersionCode) return up;
+    return null;
+  }
+
+  bool get shouldShowAppUpdatePopup =>
+      !_updatePopupShownThisSession && availableAppUpdate != null;
+
+  void markAppUpdatePopupShown() {
+    _updatePopupShownThisSession = true;
+  }
+
+  List<GameChallengePack> get allGamePacks {
+    final byId = <String, GameChallengePack>{};
+    for (final p in kDefaultGamePacks) {
+      byId[p.id] = p;
+    }
+    for (final p in _downloadedGamePacks) {
+      byId[p.id] = p;
+    }
+    return byId.values.toList();
   }
 
   String get announcementBannerText {

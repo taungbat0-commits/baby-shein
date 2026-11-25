@@ -8,6 +8,7 @@ import '../../theme/app_theme.dart';
 import '../../widgets/bouncy_button.dart';
 import '../../widgets/kids_illustration.dart';
 import '../../widgets/reward_dialog.dart';
+import 'game_word_deck.dart';
 
 class SpellWordGame extends StatefulWidget {
   final String difficulty;
@@ -19,6 +20,7 @@ class SpellWordGame extends StatefulWidget {
 
 class _SpellWordGameState extends State<SpellWordGame> {
   final Random _rng = Random();
+  final GameWordDeck _deck = GameWordDeck();
   List<LessonItem> _questions = [];
   int _index = 0;
   int _score = 0;
@@ -52,7 +54,7 @@ class _SpellWordGameState extends State<SpellWordGame> {
     }
     pool.shuffle(_rng);
     setState(() {
-      _questions = pool.take(_questionCount).toList();
+      _questions = _deck.nextRound(pool, _questionCount, _rng);
       _index = 0;
       _score = 0;
     });

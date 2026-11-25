@@ -1,0 +1,107 @@
+{
+  "gamePack": {
+    "id": "pack_game_animal_quiz",
+    "titleEn": "Animal & Nature Challenge",
+    "titleMy": "တိရစ္ဆာန်နှင့် သဘာဝ ဝါကျစီ+ဉာဏ်စမ်း",
+    "descriptionMy": "Download ဆွဲထည့်နိုင်တဲ့ ဝါကျစီနှင့် ဉာဏ်စမ်း မေးခွန်း ၆ ခု",
+    "mode": "mixed",
+    "emoji": "🦁",
+    "colorHex": 4282173350,
+    "grade": 1,
+    "items": [
+      {
+        "id": "ga_1",
+        "mode": "sentence",
+        "emoji": "🦁",
+        "audioKey": "ga_1",
+        "promptEn": "The lion is very strong.",
+        "promptMy": "ခြင်္သေ့က အရမ်းသန်မာတယ်။",
+        "words": [
+          "The",
+          "lion",
+          "is",
+          "very",
+          "strong."
+        ]
+      },
+      {
+        "id": "ga_2",
+        "mode": "sentence",
+        "emoji": "🐟",
+        "audioKey": "ga_2",
+        "promptEn": "Fish swim in the water.",
+        "promptMy": "ငါးတွေက ရေထဲမှာ ကူးခတ်ကြတယ်။",
+        "words": [
+          "Fish",
+          "swim",
+          "in",
+          "the",
+          "water."
+        ]
+      },
+      {
+        "id": "ga_3",
+        "mode": "sentence",
+        "emoji": "🌸",
+        "audioKey": "ga_3",
+        "promptEn": "I see a pink flower.",
+        "promptMy": "ငါ ပန်းရောင်ပန်းပွင့်လေးတစ်ပွင့် တွေ့တယ်။",
+        "words": [
+          "I",
+          "see",
+          "a",
+          "pink",
+          "flower."
+        ]
+      },
+      {
+        "id": "ga_4",
+        "mode": "quiz",
+        "emoji": "🐘",
+        "audioKey": "ga_4",
+        "promptEn": "Which animal has a very long trunk?",
+        "promptMy": "နှာမောင်းရှည်ကြီးရှိတဲ့ တိရစ္ဆာန်က ဘာလဲ?",
+        "options": [
+          "Rabbit",
+          "Elephant",
+          "Frog",
+          "Chicken"
+        ],
+        "answerIndex": 1,
+        "explanationMy": "Elephant (ဆင်) မှာ နှာမောင်းရှည်ကြီး ရှိပါတယ်။"
+      },
+      {
+        "id": "ga_5",
+        "mode": "quiz",
+        "emoji": "🌈",
+        "audioKey": "ga_5",
+        "promptEn": "How many colors are in a rainbow?",
+        "promptMy": "သက်တံ့မှာ အရောင် ဘယ်နှရောင် ရှိလဲ?",
+        "options": [
+          "Five",
+          "Seven",
+          "Three",
+          "Ten"
+        ],
+        "answerIndex": 1,
+        "explanationMy": "သက်တံ့မှာ အရောင် ၇ ရောင် (Seven) ရှိပါတယ်။"
+      },
+      {
+        "id": "ga_6",
+        "mode": "quiz",
+        "emoji": "🐝",
+        "audioKey": "ga_6",
+        "promptEn": "Which small insect makes sweet honey?",
+        "promptMy": "ပျားရည်ချိုချိုလေး လုပ်ပေးတဲ့ အင်းဆက်က ဘာလဲ?",
+        "options": [
+          "Ant",
+          "Bee",
+          "Fly",
+          "Spider"
+        ],
+        "answerIndex": 1,
+        "explanationMy": "Bee (ပျား) က ပျားရည်လုပ်ပေးပါတယ်။"
+      }
+    ]
+  }
+}

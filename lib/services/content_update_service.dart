@@ -12,10 +12,12 @@ typedef VersionMap = Map<String, int>;
 class DownloadedContent {
   final List<LessonModule> lessons;
   final List<DailyPhrase> phrases;
+  final List<GameChallengePack> gamePacks;
 
   const DownloadedContent({
     required this.lessons,
     required this.phrases,
+    this.gamePacks = const [],
   });
 }
 
@@ -108,6 +110,22 @@ class ContentUpdateService {
       if (((p['responseEn'] as String?) ?? '').trim().isNotEmpty) keys.add('${ak}_res');
       if (((p['responseMy'] as String?) ?? '').trim().isNotEmpty) keys.add('${ak}_res_my');
     }
+    final gamePacks = <dynamic>[
+      ...((decoded['gamePacks'] as List<dynamic>?) ?? []),
+      if (decoded['gamePack'] is Map<String, dynamic>) decoded['gamePack'],
+    ];
+    for (final rawG in gamePacks) {
+      final g = rawG as Map<String, dynamic>;
+      for (final rawI in (g['items'] as List<dynamic>?) ?? []) {
+        final item = rawI as Map<String, dynamic>;
+        final ak = ((item['audioKey'] as String?) ?? '').trim();
+        if (ak.isEmpty) continue;
+        keys.add(ak);
+        if (((item['promptMy'] as String?) ?? '').trim().isNotEmpty) {
+          keys.add('${ak}_my');
+        }
+      }
+    }
     return keys;
   }
 
@@ -145,9 +163,11 @@ class ContentUpdateService {
     if (body == null || body.trim().isEmpty) return false;
     try {
       final decoded = jsonDecode(body) as Map<String, dynamic>;
-      if (!decoded.containsKey('lessons') && !decoded.containsKey('phrases')) {
-        return false;
-      }
+      final hasData = decoded.containsKey('lessons') ||
+          decoded.containsKey('phrases') ||
+          decoded.containsKey('gamePacks') ||
+          decoded.containsKey('gamePack');
+      if (!hasData) return false;
 
       final audioKeys = _extractAudioKeys(decoded).toList();
       final lastSlash = pack.downloadUrl.lastIndexOf('/');
@@ -209,6 +229,7 @@ class ContentUpdateService {
   Future<DownloadedContent> loadInstalledContent() async {
     final lessons = <LessonModule>[];
     final phrases = <DailyPhrase>[];
+    final gamePacks = <GameChallengePack>[];
     final dir = await _packsDir();
     final versions = await getInstalledVersions();
 
@@ -223,9 +244,25 @@ class ContentUpdateService {
         for (final p in (json['phrases'] as List<dynamic>?) ?? []) {
           phrases.add(DailyPhrase.fromJson(p as Map<String, dynamic>));
         }
+        for (final g in (json['gamePacks'] as List<dynamic>?) ?? []) {
+          gamePacks.add(GameChallengePack.fromJson(
+            g as Map<String, dynamic>,
+            isDownloaded: true,
+          ));
+        }
+        if (json['gamePack'] is Map<String, dynamic>) {
+          gamePacks.add(GameChallengePack.fromJson(
+            json['gamePack'] as Map<String, dynamic>,
+            isDownloaded: true,
+          ));
+        }
       } catch (_) {}
     }
 
-    return DownloadedContent(lessons: lessons, phrases: phrases);
+    return DownloadedContent(
+      lessons: lessons,
+      phrases: phrases,
+      gamePacks: gamePacks,
+    );
   }
 }

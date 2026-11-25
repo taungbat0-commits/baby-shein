@@ -8,6 +8,7 @@ import '../../theme/app_theme.dart';
 import '../../widgets/bouncy_button.dart';
 import '../../widgets/kids_illustration.dart';
 import '../../widgets/reward_dialog.dart';
+import 'game_word_deck.dart';
 
 class MissingLetterGame extends StatefulWidget {
   final String difficulty;
@@ -19,6 +20,7 @@ class MissingLetterGame extends StatefulWidget {
 
 class _MissingLetterGameState extends State<MissingLetterGame> {
   final Random _rng = Random();
+  final GameWordDeck _deck = GameWordDeck();
   List<LessonItem> _questions = [];
   int _index = 0;
   int _score = 0;
@@ -45,7 +47,7 @@ class _MissingLetterGameState extends State<MissingLetterGame> {
     final grade = widget.difficulty == 'easy' ? 1 : null;
     final pool = state.repository.getSingleWordVocabulary(grade: grade)..shuffle(_rng);
     setState(() {
-      _questions = pool.take(_questionCount).toList();
+      _questions = _deck.nextRound(pool, _questionCount, _rng);
       _index = 0;
       _score = 0;
     });
@@ -108,8 +110,8 @@ class _MissingLetterGameState extends State<MissingLetterGame> {
       final stars = ratio >= 0.9 ? 3 : ratio >= 0.6 ? 2 : ratio > 0 ? 1 : 0;
       await RewardDialog.show(
         context,
-        titleEn: 'Score: $_score / ${_questions.length}',
-        titleMy: 'ရမှတ် $_score / ${_questions.length}',
+        titleEn: 'Round ${_deck.round} • Score: $_score / ${_questions.length}',
+        titleMy: 'အကျော့ ${_deck.round} • ရမှတ် $_score / ${_questions.length}',
         starsEarned: stars,
         newBadges: badges,
       );

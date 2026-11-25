@@ -9,6 +9,20 @@
   },
   "packs": [
     {
+      "id": "pack_game_animal_quiz",
+      "version": 1,
+      "titleEn": "Animal & Nature Game Pack",
+      "titleMy": "တိရစ္ဆာန်နှင့် သဘာဝ ဂိမ်းအစု (၆ ခု)",
+      "descriptionEn": "Mixed Sentence Builder & Quiz game pack.",
+      "descriptionMy": "ဝါကျစီဂိမ်း ၃ ခု + ဉာဏ်စမ်းဂိမ်း ၃ ခု (Game Packs ထဲ တန်းဝင်မည်)",
+      "grade": 1,
+      "type": "game",
+      "icon": "🦁",
+      "colorHex": 4282173350,
+      "sizeLabel": "~120 KB",
+      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_game_animal_quiz.json"
+    },
+    {
       "id": "pack_daily_extra_topics",
       "version": 1,
       "titleEn": "Bedtime, Safety & Dreams Talk",
