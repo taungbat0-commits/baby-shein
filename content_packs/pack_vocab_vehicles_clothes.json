@@ -121,7 +121,8 @@
           "exampleMy": "မီးသတ်ကားအနီက လူတွေကို ကူညီတယ်။",
           "exampleAudioKey": "veh_fire_ex"
         }
-      ]
+      ],
+      "order": 21
     },
     {
       "id": "pack_g1_clothes",
@@ -244,7 +245,8 @@
           "exampleMy": "မိုးရွာရင် ထီးဖွင့်ဆောင်းနော်။",
           "exampleAudioKey": "clo_umbrella_ex"
         }
-      ]
+      ],
+      "order": 22
     }
   ]
 }
