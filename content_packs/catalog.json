@@ -1,26 +1,26 @@
 {
   "announcement": {
-    "id": "notice_20261125_0733",
-    "titleEn": "10 Dialogues for All 13 Topics!",
-    "titleMy": "ခေါင်းစဉ် ၁၃ ခုလုံး စကားပြော ၁၀ ခုစီ ပြည့်သွားပါပြီ!",
-    "messageEn": "Download 79 conversations across all 13 Daily English topics.",
-    "messageMy": "Daily English ခေါင်းစဉ် 13 ခုလုံး ၁၀ ခုစီပြည့်အောင် စကားပြော 79 ခုကို Download ဆွဲထည့်နိုင်ပါပြီ။",
-    "marqueeText": "Daily English ခေါင်းစဉ် 13 ခုလုံး ၁၀ ခုပြည့် Pack အသစ် (79 ခု) ရောက်နေပြီ! နှိပ်ပြီး ထည့်သွင်းနိုင်ပါတယ် 🎉"
+    "id": "notice_20261125_0740",
+    "titleEn": "All-in-One Daily English Pack Ready!",
+    "titleMy": "နေ့စဉ်သုံး စကားပြော All-in-One Pack ရောက်နေပါပြီ!",
+    "messageEn": "One-tap download for all 13 topics (10 dialogues each, EN+MY audio included).",
+    "messageMy": "ခေါင်းစဉ် 13 ခုလုံး စကားပြော ၁၀ ခုစီပြည့်မယ့် All-in-One Pack ကို တစ်ချက်တည်း Download ဆွဲထည့်နိုင်ပါပြီ။",
+    "marqueeText": "Daily English ခေါင်းစဉ် 13 ခုလုံး ၁၀ ခုပြည့် All-in-One Pack တစ်ခုတည်းနဲ့ ဆွဲလို့ရပါပြီ 🎉"
   },
   "packs": [
     {
-      "id": "pack_daily_complete_10",
-      "version": 2,
-      "titleEn": "Complete 10-Dialogue Pack",
-      "titleMy": "ခေါင်းစဉ် ၁၃ ခုလုံး စကားပြော ၁၀ ခုပြည့် Pack",
-      "descriptionEn": "79 dialogues so all 13 Daily English topics have 10 conversations.",
-      "descriptionMy": "Daily English ခေါင်းစဉ် 13 ခုလုံး ၁၀ ခုစီပြည့်စေမည့် စကားပြော 79 ခု (EN+MY အသံပါ)",
+      "id": "pack_daily_all_in_one",
+      "version": 1,
+      "titleEn": "All-in-One Daily English Pack",
+      "titleMy": "နေ့စဉ်သုံး စကားပြော အစုံအလင် Pack (13 ခေါင်းစဉ်)",
+      "descriptionEn": "115 dialogues covering all 13 Daily English topics (10 per topic with built-in).",
+      "descriptionMy": "ခေါင်းစဉ် 13 ခုလုံး ၁၀ ခုစီပြည့်စေမည့် စကားပြော 115 ခု (EN+MY အသံပါ တစ်ခါတည်းဆွဲရန်)",
       "grade": 1,
       "type": "daily",
       "icon": "💬",
       "colorHex": 4283413503,
-      "sizeLabel": "~2212 KB",
-      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_daily_complete_10.json"
+      "sizeLabel": "~3220 KB",
+      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_daily_all_in_one.json"
     },
     {
       "id": "pack_game_animal_quiz",
@@ -35,48 +35,6 @@
       "colorHex": 4282173350,
       "sizeLabel": "~120 KB",
       "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_game_animal_quiz.json"
-    },
-    {
-      "id": "pack_daily_extra_topics",
-      "version": 1,
-      "titleEn": "Bedtime, Safety & Dreams Talk",
-      "titleMy": "အိပ်ရာဝင်၊ ဂရုစိုက်ရန်နှင့် ရည်မှန်းချက် စကားပြော ၁၅ ခု",
-      "descriptionEn": "15 dialogues for Bedtime, Learning, Sharing, Safety, and Dreams.",
-      "descriptionMy": "Bedtime, Learning, Sharing, Safety, Dreams ခေါင်းစဉ် ၅ ခုအတွက် စကားပြော ၁၅ ခု (EN+MY အသံပါ)",
-      "grade": 1,
-      "type": "daily",
-      "icon": "🌙",
-      "colorHex": 4288379903,
-      "sizeLabel": "~420 KB",
-      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_daily_extra_topics.json"
-    },
-    {
-      "id": "pack_daily_more_dialogues",
-      "version": 2,
-      "titleEn": "More Daily Conversations",
-      "titleMy": "နေ့စဉ်သုံး စကားပြောအပို ၁၇ ခု",
-      "descriptionEn": "17 items with EN + MY audio.",
-      "descriptionMy": "Morning, Mealtime, Polite, Classroom, Playtime, Home ခေါင်းစဉ်များအတွက် စကားပြောအသစ်များ (17 ခု • EN+MY အသံပါ)",
-      "grade": 1,
-      "type": "daily",
-      "icon": "🗣️",
-      "colorHex": 4283413503,
-      "sizeLabel": "~476 KB",
-      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_daily_more_dialogues.json"
-    },
-    {
-      "id": "pack_daily_home_school",
-      "version": 2,
-      "titleEn": "Home & School Talk",
-      "titleMy": "အိမ်နှင့်ကျောင်း စကားပြောများ",
-      "descriptionEn": "6 items with EN + MY audio.",
-      "descriptionMy": "နေ့စဉ် အိမ်နဲ့ကျောင်းမှာ သုံးနိုင်တဲ့ ယဉ်ကျေးသောစကားပြော ၆ ခု (6 ခု • EN+MY အသံပါ)",
-      "grade": 1,
-      "type": "daily",
-      "icon": "🏫",
-      "colorHex": 4281911695,
-      "sizeLabel": "~168 KB",
-      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_daily_home_school.json"
     },
     {
       "id": "pack_sea_animals",
