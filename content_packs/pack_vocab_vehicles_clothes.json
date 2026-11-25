@@ -1,0 +1,250 @@
+{
+  "lessons": [
+    {
+      "id": "pack_g1_vehicles",
+      "grade": 1,
+      "category": "vehicles",
+      "icon": "🚗",
+      "colorHex": 4283413503,
+      "titleEn": "Vehicles",
+      "titleMy": "ယာဉ်များ",
+      "descriptionEn": "Learn 10 common vehicles around us.",
+      "descriptionMy": "နေ့စဉ်မြင်တွေ့နေကျ ယာဉ်အမျိုးအစား ၁၀ မျိုး",
+      "items": [
+        {
+          "id": "veh_car",
+          "english": "Car",
+          "myanmar": "ကား",
+          "phonetic": "/kɑːr/",
+          "emoji": "🚗",
+          "audioKey": "veh_car",
+          "exampleEn": "Dad drives a blue car.",
+          "exampleMy": "ဖေဖေက အပြာရောင်ကား မောင်းတယ်။",
+          "exampleAudioKey": "veh_car_ex"
+        },
+        {
+          "id": "veh_bus",
+          "english": "Bus",
+          "myanmar": "ဘတ်စ်ကား",
+          "phonetic": "/bʌs/",
+          "emoji": "🚌",
+          "audioKey": "veh_bus",
+          "exampleEn": "We ride the school bus.",
+          "exampleMy": "ငါတို့ ကျောင်းကား စီးကြတယ်။",
+          "exampleAudioKey": "veh_bus_ex"
+        },
+        {
+          "id": "veh_bike",
+          "english": "Bicycle",
+          "myanmar": "စက်ဘီး",
+          "phonetic": "/ˈbaɪ.sɪ.kəl/",
+          "emoji": "🚲",
+          "audioKey": "veh_bike",
+          "exampleEn": "I ride my bicycle in the park.",
+          "exampleMy": "ငါ ပန်းခြံထဲမှာ စက်ဘီးစီးတယ်။",
+          "exampleAudioKey": "veh_bike_ex"
+        },
+        {
+          "id": "veh_train",
+          "english": "Train",
+          "myanmar": "ရထား",
+          "phonetic": "/treɪn/",
+          "emoji": "🚆",
+          "audioKey": "veh_train",
+          "exampleEn": "The long train goes fast.",
+          "exampleMy": "ရထားရှည်ကြီးက မြန်မြန်သွားတယ်။",
+          "exampleAudioKey": "veh_train_ex"
+        },
+        {
+          "id": "veh_plane",
+          "english": "Airplane",
+          "myanmar": "လေယာဉ်ပျံ",
+          "phonetic": "/ˈer.pleɪn/",
+          "emoji": "✈️",
+          "audioKey": "veh_plane",
+          "exampleEn": "The airplane flies in the sky.",
+          "exampleMy": "လေယာဉ်ပျံက ကောင်းကင်မှာ ပျံတယ်။",
+          "exampleAudioKey": "veh_plane_ex"
+        },
+        {
+          "id": "veh_boat",
+          "english": "Boat",
+          "myanmar": "လှေ",
+          "phonetic": "/boʊt/",
+          "emoji": "⛵",
+          "audioKey": "veh_boat",
+          "exampleEn": "A little boat floats on water.",
+          "exampleMy": "လှေလေးတစ်စင်း ရေပေါ်မှာ ပေါ်နေတယ်။",
+          "exampleAudioKey": "veh_boat_ex"
+        },
+        {
+          "id": "veh_ship",
+          "english": "Ship",
+          "myanmar": "သင်္ဘော",
+          "phonetic": "/ʃɪp/",
+          "emoji": "🚢",
+          "audioKey": "veh_ship",
+          "exampleEn": "The big ship sails on the sea.",
+          "exampleMy": "သင်္ဘောကြီးက ပင်လယ်မှာ ရွက်လွှင့်တယ်။",
+          "exampleAudioKey": "veh_ship_ex"
+        },
+        {
+          "id": "veh_truck",
+          "english": "Truck",
+          "myanmar": "ကုန်တင်ကား",
+          "phonetic": "/trʌk/",
+          "emoji": "🚚",
+          "audioKey": "veh_truck",
+          "exampleEn": "The truck carries heavy boxes.",
+          "exampleMy": "ကုန်တင်ကားက သေတ္တာအလေးကြီးတွေ သယ်တယ်။",
+          "exampleAudioKey": "veh_truck_ex"
+        },
+        {
+          "id": "veh_moto",
+          "english": "Motorbike",
+          "myanmar": "ဆိုင်ကယ်",
+          "phonetic": "/ˈmoʊ.t̬ɚ.baɪk/",
+          "emoji": "🛵",
+          "audioKey": "veh_moto",
+          "exampleEn": "Wear a helmet on a motorbike.",
+          "exampleMy": "ဆိုင်ကယ်စီးရင် ဦးထုပ်ဆောင်းပါ။",
+          "exampleAudioKey": "veh_moto_ex"
+        },
+        {
+          "id": "veh_fire",
+          "english": "Fire Truck",
+          "myanmar": "မီးသတ်ကား",
+          "phonetic": "/ˈfaɪr trʌk/",
+          "emoji": "🚒",
+          "audioKey": "veh_fire",
+          "exampleEn": "The red fire truck helps people.",
+          "exampleMy": "မီးသတ်ကားအနီက လူတွေကို ကူညီတယ်။",
+          "exampleAudioKey": "veh_fire_ex"
+        }
+      ]
+    },
+    {
+      "id": "pack_g1_clothes",
+      "grade": 1,
+      "category": "clothes",
+      "icon": "👕",
+      "colorHex": 4294934198,
+      "titleEn": "Clothes",
+      "titleMy": "အဝတ်အစားများ",
+      "descriptionEn": "Learn 10 everyday clothes words.",
+      "descriptionMy": "နေ့စဉ်ဝတ်ဆင်တဲ့ အဝတ်အစား ၁၀ မျိုး",
+      "items": [
+        {
+          "id": "clo_shirt",
+          "english": "Shirt",
+          "myanmar": "အင်္ကျီ",
+          "phonetic": "/ʃɜːrt/",
+          "emoji": "👕",
+          "audioKey": "clo_shirt",
+          "exampleEn": "My white shirt is clean.",
+          "exampleMy": "ငါ့အင်္ကျီအဖြူလေးက သန့်ရှင်းတယ်။",
+          "exampleAudioKey": "clo_shirt_ex"
+        },
+        {
+          "id": "clo_pants",
+          "english": "Pants",
+          "myanmar": "ဘောင်းဘီ",
+          "phonetic": "/pænts/",
+          "emoji": "👖",
+          "audioKey": "clo_pants",
+          "exampleEn": "He wears blue pants.",
+          "exampleMy": "သူက အပြာရောင်ဘောင်းဘီ ဝတ်ထားတယ်။",
+          "exampleAudioKey": "clo_pants_ex"
+        },
+        {
+          "id": "clo_dress",
+          "english": "Dress",
+          "myanmar": "ဂါဝန်",
+          "phonetic": "/dres/",
+          "emoji": "👗",
+          "audioKey": "clo_dress",
+          "exampleEn": "She has a pink dress.",
+          "exampleMy": "သူမမှာ ပန်းရောင်ဂါဝန်လေး ရှိတယ်။",
+          "exampleAudioKey": "clo_dress_ex"
+        },
+        {
+          "id": "clo_shoes",
+          "english": "Shoes",
+          "myanmar": "ဖိနပ်",
+          "phonetic": "/ʃuːz/",
+          "emoji": "👟",
+          "audioKey": "clo_shoes",
+          "exampleEn": "Put on your running shoes.",
+          "exampleMy": "အားကစားဖိနပ်လေး စီးလိုက်နော်။",
+          "exampleAudioKey": "clo_shoes_ex"
+        },
+        {
+          "id": "clo_hat",
+          "english": "Hat",
+          "myanmar": "ဦးထုပ်",
+          "phonetic": "/hæt/",
+          "emoji": "🧢",
+          "audioKey": "clo_hat",
+          "exampleEn": "Wear a hat in the sun.",
+          "exampleMy": "နေပူထဲမှာ ဦးထုပ်ဆောင်းနော်။",
+          "exampleAudioKey": "clo_hat_ex"
+        },
+        {
+          "id": "clo_socks",
+          "english": "Socks",
+          "myanmar": "ခြေအိတ်",
+          "phonetic": "/sɑːks/",
+          "emoji": "🧦",
+          "audioKey": "clo_socks",
+          "exampleEn": "My socks are soft and warm.",
+          "exampleMy": "ငါ့ခြေအိတ်လေးတွေက နူးညံ့ပြီးနွေးတယ်။",
+          "exampleAudioKey": "clo_socks_ex"
+        },
+        {
+          "id": "clo_jacket",
+          "english": "Jacket",
+          "myanmar": "အနွေးထည်",
+          "phonetic": "/ˈdʒæk.ɪt/",
+          "emoji": "🧥",
+          "audioKey": "clo_jacket",
+          "exampleEn": "Put on your warm jacket.",
+          "exampleMy": "အနွေးထည်လေး ဝတ်ထားနော်။",
+          "exampleAudioKey": "clo_jacket_ex"
+        },
+        {
+          "id": "clo_glasses",
+          "english": "Glasses",
+          "myanmar": "မျက်မှန်",
+          "phonetic": "/ˈɡlæs.ɪz/",
+          "emoji": "👓",
+          "audioKey": "clo_glasses",
+          "exampleEn": "Grandpa wears reading glasses.",
+          "exampleMy": "ဖိုးဖိုးက စာဖတ်မျက်မှန် တပ်တယ်။",
+          "exampleAudioKey": "clo_glasses_ex"
+        },
+        {
+          "id": "clo_bag",
+          "english": "Backpack",
+          "myanmar": "ကျောပိုးအိတ်",
+          "phonetic": "/ˈbæk.pæk/",
+          "emoji": "🎒",
+          "audioKey": "clo_bag",
+          "exampleEn": "My books are in my backpack.",
+          "exampleMy": "စာအုပ်တွေက ကျောပိုးအိတ်ထဲမှာ ရှိတယ်။",
+          "exampleAudioKey": "clo_bag_ex"
+        },
+        {
+          "id": "clo_umbrella",
+          "english": "Umbrella",
+          "myanmar": "ထီး",
+          "phonetic": "/ʌmˈbrel.ə/",
+          "emoji": "☂️",
+          "audioKey": "clo_umbrella",
+          "exampleEn": "Open your umbrella in the rain.",
+          "exampleMy": "မိုးရွာရင် ထီးဖွင့်ဆောင်းနော်။",
+          "exampleAudioKey": "clo_umbrella_ex"
+        }
+      ]
+    }
+  ]
+}

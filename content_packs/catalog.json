@@ -9,6 +9,20 @@
   },
   "packs": [
     {
+      "id": "pack_vocab_vehicles_clothes",
+      "version": 1,
+      "titleEn": "Vehicles & Clothes Pack",
+      "titleMy": "ယာဉ်များနှင့် အဝတ်အစား ဝေါဟာရ ၂၀ လုံး",
+      "descriptionEn": "10 Vehicles + 10 Clothes words with examples and EN/MY audio.",
+      "descriptionMy": "ယာဉ် ၁၀ မျိုး + အဝတ်အစား ၁၀ မျိုး (Vocabulary ခေါင်းစဉ်ကတ် ၂ ခု တန်းတိုးမည်)",
+      "grade": 1,
+      "type": "lesson",
+      "icon": "🚗",
+      "colorHex": 4283413503,
+      "sizeLabel": "~480 KB",
+      "downloadUrl": "https://raw.githubusercontent.com/taungbat0-commits/baby-shein/main/content_packs/pack_vocab_vehicles_clothes.json"
+    },
+    {
       "id": "pack_daily_all_in_one",
       "version": 1,
       "titleEn": "All-in-One Daily English Pack",
