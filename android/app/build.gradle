@@ -37,6 +37,9 @@ android {
 
     signingConfigs {
         release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             if (keystorePropertiesFile.exists()) {
                 keyAlias keystoreProperties.getProperty('keyAlias')
                 keyPassword keystoreProperties.getProperty('keyPassword')
